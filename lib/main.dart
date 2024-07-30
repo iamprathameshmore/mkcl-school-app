@@ -1,8 +1,10 @@
 import 'dart:ffi';
 
+import 'package:client/screens/home.dart';
 import 'package:client/screens/otp.dart';
 import 'package:client/screens/signin.dart';
 import 'package:client/theme/themedataprovider.dart';
+import 'package:client/utils/drawer.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
 
@@ -31,6 +33,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    print('build');
     return MaterialApp(
       theme: Provider.of<ThemeProvider>(context).themeDataStyle,
       debugShowCheckedModeBanner: false,

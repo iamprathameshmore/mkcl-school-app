@@ -1,3 +1,4 @@
+import 'package:client/screens/home.dart';
 import 'package:client/theme/theme_style.dart';
 import 'package:client/theme/themedataprovider.dart';
 import 'package:flutter/material.dart';
@@ -17,12 +18,12 @@ class _OTPScreenState extends State<OTPScreen> {
     final themeProvider = Provider.of<ThemeProvider>(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'OTP Verification',
-          style: TextStyle(
-              color: Colors.indigo.shade500, fontWeight: FontWeight.w500),
-        ),
-        centerTitle: true,
+        // title: Text(
+        //   'OTP Verification',
+        //   style: TextStyle(
+        //       color: Colors.indigo.shade500, fontWeight: FontWeight.w500),
+        // ),
+        // centerTitle: true,
         leading: Builder(
           builder: (BuildContext context) {
             return IconButton(
@@ -58,28 +59,36 @@ class _OTPScreenState extends State<OTPScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Image(
-            image: AssetImage('assets/mkcl.png'),
-            height: 100,
-            color: Colors.indigo,
-          ),
-          Container(
-            child: Column(
-              children: [
-                Text(
-                  'Mkcl School',
-                  style: TextStyle(
-                    color: Colors.indigo.shade600,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 30,
-                  ),
-                ),
-                Text(
-                  'Creating a Knowledge Lit World',
-                  style: TextStyle(color: Colors.grey),
-                )
-              ],
-            ),
+          // Image(
+          //   image: AssetImage('assets/mkcl.png'),
+          //   height: 100,
+          //   color: Colors.indigo,
+          // ),
+          // Container(
+          //   child: Column(
+          //     children: [
+          //       Text(
+          //         'Mkcl School',
+          //         style: TextStyle(
+          //           color: Colors.indigo.shade600,
+          //           fontWeight: FontWeight.w500,
+          //           fontSize: 30,
+          //         ),
+          //       ),
+          //       Text(
+          //         'Creating a Knowledge Lit World',
+          //         style: TextStyle(color: Colors.grey),
+          //       )
+          //     ],
+          //   ),
+          // ),
+
+          Text(
+            'OTP Verification',
+            style: TextStyle(
+                color: Colors.indigo.shade500,
+                fontWeight: FontWeight.w500,
+                fontSize: 25),
           ),
           SizedBox(
             height: 20,
@@ -154,6 +163,12 @@ class _OTPScreenState extends State<OTPScreen> {
           SizedBox(
             height: 10,
           ),
+          IconButton(
+              onPressed: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => Home()));
+              },
+              icon: Icon(Icons.home))
           // Padding(
           //   padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
           //   child: Material(

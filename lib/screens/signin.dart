@@ -97,17 +97,22 @@ class _SignInState extends State<SignIn> {
                   ),
                   enabled: true,
                   focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey.shade500),
-                      borderRadius: BorderRadius.circular(0)),
+                      borderSide: BorderSide(
+                          color: Theme.of(context).colorScheme.onSurface),
+                      borderRadius: BorderRadius.circular(5)),
                   enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey.shade500),
-                      borderRadius: BorderRadius.circular(0))),
+                      borderSide: BorderSide(
+                          color: Theme.of(context).colorScheme.onSurface),
+                      borderRadius: BorderRadius.circular(5))),
             ),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Material(
               color: Colors.indigo,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5.0),
+                  side: BorderSide(color: Colors.indigo)),
               child: InkWell(
                 onTap: () {
                   Navigator.of(context).push(
@@ -117,15 +122,15 @@ class _SignInState extends State<SignIn> {
                   height: 50,
                   width: double.infinity,
                   alignment: Alignment.center,
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                       // color: Colors.indigo.shade500
-                      ),
+                      borderRadius: BorderRadius.circular(5)),
                   child: const Text(
                     'SIGN IN WITH OTP',
                     style: TextStyle(
                         fontSize: 17,
                         color: Colors.white,
-                        fontWeight: FontWeight.w400),
+                        fontWeight: FontWeight.w500),
                   ),
                 ),
               ),
