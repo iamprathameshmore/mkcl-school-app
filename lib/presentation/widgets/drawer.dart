@@ -70,19 +70,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
                   ),
                 ),
               ),
-              // Container(
-              //     width: 128.0,
-              //     height: 128.0,
-              //     margin: const EdgeInsets.only(
-              //       top: 24.0,
-              //       bottom: 64.0,
-              //     ),
-              //     clipBehavior: Clip.antiAlias,
-              //     decoration: BoxDecoration(
-              //         color: Colors.black26,
-              //         shape: BoxShape.rectangle,
-              //         borderRadius: BorderRadius.circular(1)),
-              //     child: Center(child: Text('hello'))),
+
               Divider(
                 color: Colors.grey,
               ),
