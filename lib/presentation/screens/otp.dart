@@ -1,6 +1,6 @@
-import 'package:client/screens/home.dart';
-import 'package:client/theme/theme_style.dart';
-import 'package:client/theme/themedataprovider.dart';
+import 'package:client/presentation/screens/home.dart';
+import 'package:client/core/theme/theme_style.dart';
+import 'package:client/core/theme/themedataprovider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:provider/provider.dart';

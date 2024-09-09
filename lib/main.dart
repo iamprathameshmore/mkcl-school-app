@@ -1,13 +1,7 @@
-import 'dart:ffi';
-
-import 'package:client/screens/home.dart';
-import 'package:client/screens/otp.dart';
-import 'package:client/screens/signin.dart';
-import 'package:client/theme/themedataprovider.dart';
-import 'package:client/utils/drawer.dart';
+import 'package:client/app.dart';
+import 'package:client/core/theme/themedataprovider.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -37,7 +31,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: Provider.of<ThemeProvider>(context).themeDataStyle,
       debugShowCheckedModeBanner: false,
-      home: SignIn(),
+      home: const App(),
     );
   }
 }
