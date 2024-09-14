@@ -1,15 +1,20 @@
-import 'package:client/presentation/screens/Profile.dart';
-import 'package:client/presentation/widgets/drawer.dart';
-import 'package:client/presentation/widgets/batches.widgets.dart';
+// ignore: file_names
+import 'package:client/ui/screens/addBatchScreen.dart';
+import 'package:client/ui/screens/batch.dart';
+import 'package:client/ui/screens/profileScreen.dart';
+import 'package:client/ui/widgets/drawerWidget.dart';
+import 'package:client/ui/widgets/batchesWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 
-class Home extends StatefulWidget {
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
   @override
-  _HomeState createState() => _HomeState();
+  _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _HomeState extends State<Home> {
+class _HomeScreenState extends State<HomeScreen> {
   final _advancedDrawerController = AdvancedDrawerController();
 
   @override
@@ -31,9 +36,9 @@ class _HomeState extends State<Home> {
         openScale: 1.0,
         disabledGestures: false,
         childDecoration: const BoxDecoration(
-          borderRadius: const BorderRadius.all(Radius.circular(0)),
+          borderRadius: BorderRadius.all(Radius.circular(0)),
         ),
-        drawer: HomeDrawer(),
+        drawer: const HomeDrawer(),
         child: Scaffold(
           // appBar: AppBar(
 
@@ -49,7 +54,7 @@ class _HomeState extends State<Home> {
                 foregroundColor: Colors.grey.shade700,
                 title: Text.rich(TextSpan(
                     text: 'Mkcl',
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: Colors.indigo, fontWeight: FontWeight.w500),
                     children: [
                       TextSpan(
@@ -63,7 +68,7 @@ class _HomeState extends State<Home> {
                     valueListenable: _advancedDrawerController,
                     builder: (_, value, __) {
                       return AnimatedSwitcher(
-                        duration: Duration(milliseconds: 100),
+                        duration: const Duration(milliseconds: 100),
                         child: Icon(
                           value.visible ? Icons.clear : Icons.menu,
                           key: ValueKey<bool>(value.visible),
@@ -75,73 +80,49 @@ class _HomeState extends State<Home> {
                 actions: [
                   GestureDetector(
                       onTap: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => Profile()));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const ProfileScreen()));
                       },
                       child: Container(
                         decoration: BoxDecoration(
                             color: Theme.of(context).colorScheme.onSurface,
                             borderRadius: BorderRadius.circular(50)),
-                        child: Padding(
-                          padding: const EdgeInsets.all(3.0),
+                        child: const Padding(
+                          padding: EdgeInsets.all(3.0),
                           child: CircleAvatar(
                             backgroundImage: NetworkImage(
                                 'https://avatars.githubusercontent.com/u/91453437?v=4'),
                           ),
                         ),
                       )),
-                  SizedBox(
+                  const SizedBox(
                     width: 10,
                   )
                 ],
               ),
-              // SliverToBoxAdapter(
-              //   child: Container(
-              //     // color: Colors.amber,
-              //     height: MediaQuery.of(context).size.height,
-              //     child: ListWheelScrollView(
-              //       diameterRatio: 10,
-              //       // renderChildrenOutsideViewport: true,
-              //       magnification: 1,
-              //       useMagnifier: true,
-              //       scrollBehavior: ScrollBehavior(),
-              //       itemExtent: 200,
-              //       children: List.generate(50, (index) {
-              //         return Padding(
-              //           padding: const EdgeInsets.all(8.0),
-              //           child: Container(
-              //             color: Colors.amber,
-              //             child: ListTile(
-              //               title: Center(child: Text('Item $index')),
-              //             ),
-              //           ),
-              //         );
-              //       }),
-              //     ),
-              //   ),
-              // ),
-              // Expanded(
-              //     child: ListWheelScrollView(itemExtent: 200, children: [
-              //   Container(
-              //     height: 50,
-              //     width: double.infinity,
-              //     child: Text('hello'),
-              //   )
-              // ]))
-
               SliverList(
                 delegate: SliverChildBuilderDelegate(
                   (BuildContext context, int index) {
-                    return BatchesWidgets();
+                    return GestureDetector(
+                      onTap: () {
+                        // Handle the tap event here
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Batch()));
+                      },
+                      child: const BatchesWidgets(),
+                    );
                   },
                   childCount: 20,
                 ),
               ),
-
-              SliverToBoxAdapter(
+              const SliverToBoxAdapter(
                 child: Padding(
-                  padding: const EdgeInsets.only(bottom: 10, top: 5),
-                  child: Container(
+                  padding: EdgeInsets.only(bottom: 10, top: 5),
+                  child: SizedBox(
                     height: 30,
                     child: Text(
                       textAlign: TextAlign.center,
@@ -154,11 +135,13 @@ class _HomeState extends State<Home> {
             ],
           ),
           floatingActionButton: FloatingActionButton(
-            onPressed: () {},
-            child: Center(child: Icon(Icons.add)),
+            onPressed: () {
+              Navigator.of(context).push(_createRoute());
+            },
             backgroundColor: Colors.indigo,
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
+            child: const Center(child: Icon(Icons.add)),
           ),
         ));
   }
@@ -168,4 +151,23 @@ class _HomeState extends State<Home> {
     // _advancedDrawerController.value = AdvancedDrawerValue.visible();
     _advancedDrawerController.showDrawer();
   }
+}
+
+Route _createRoute() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) =>
+        const AddBatchScreen(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      const begin = Offset(0.0, 1.0);
+      const end = Offset.zero;
+      const curve = Curves.ease;
+
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+      return SlideTransition(
+        position: animation.drive(tween),
+        child: child,
+      );
+    },
+  );
 }

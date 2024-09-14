@@ -1,9 +1,11 @@
-import 'package:client/app.dart';
 import 'package:client/core/theme/themedataprovider.dart';
+import 'package:client/ui/routes/routes.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import 'ui/routes/routesName.dart';
 
 void main() {
   if (kDebugMode) {
@@ -27,11 +29,13 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    print('build');
+    if (kDebugMode) {
+      print('build');
+    }
     return MaterialApp(
-      theme: Provider.of<ThemeProvider>(context).themeDataStyle,
-      debugShowCheckedModeBanner: false,
-      home: const App(),
-    );
+        theme: Provider.of<ThemeProvider>(context).themeDataStyle,
+        debugShowCheckedModeBanner: false,
+        initialRoute: Routesname.signIn,
+        onGenerateRoute: AppRoutes.generateRoute);
   }
 }

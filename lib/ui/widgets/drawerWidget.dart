@@ -4,6 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
+import '../screens/instituteProfileScreen.dart';
+import '../screens/profileScreen.dart';
+import '../screens/settingScreen.dart';
+import '../screens/signinScreen.dart';
+
 DateTime now = DateTime.now();
 
 class HomeDrawer extends StatefulWidget {
@@ -21,7 +26,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
     return SafeArea(
-      child: Container(
+      child: SizedBox(
         width: 150,
         child: ListTileTheme(
           textColor: Colors.white,
@@ -60,7 +65,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
                           themeProvider.themeDataStyle == ThemeDataStyle.dark
                               ? 'Dark'
                               : 'Light',
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.grey,
                               fontSize: 15,
                               fontWeight: FontWeight.w500),
@@ -70,14 +75,13 @@ class _HomeDrawerState extends State<HomeDrawer> {
                   ),
                 ),
               ),
-
-              Divider(
+              const Divider(
                 color: Colors.grey,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
-              Container(
+              SizedBox(
                 // height: 50,
                 width: double.infinity,
                 child: Padding(
@@ -109,23 +113,28 @@ class _HomeDrawerState extends State<HomeDrawer> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
-              Divider(
+              const Divider(
                 color: Colors.grey,
               ),
-              Container(
-                child: Column(
-                  children: [],
-                ),
+              const Column(
+                children: [],
               ),
               Material(
                   type: MaterialType.transparency,
                   child: ListTile(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                const InstituteProfileScreen()),
+                      );
+                    },
                     title: Text(
-                      'Home',
+                      'Institute',
                       style: TextStyle(
                         color: Theme.of(context).colorScheme.primary,
                       ),
@@ -134,60 +143,15 @@ class _HomeDrawerState extends State<HomeDrawer> {
               Material(
                 type: MaterialType.transparency,
                 child: ListTile(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const ProfileScreen()));
+                  },
                   // leading: Icon(Icons.account_circle_rounded),
                   title: Text(
                     'Profile',
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.primary,
-                    ),
-                  ),
-                ),
-              ),
-              // Material(
-              //     type: MaterialType.transparency,
-              //     child: ListTile(
-              //       onTap: () {},
-              //       // leading: Icon(Icons.favorite),
-              //       title: Text(
-              //         'Mkcl News',
-              //         style: TextStyle(
-              //           color: Theme.of(context).colorScheme.primary,
-              //         ),
-              //       ),
-              //     )),
-              Material(
-                type: MaterialType.transparency,
-                child: ListTile(
-                  onTap: () {},
-                  // leading: Icon(Icons.settings),
-                  title: Text(
-                    'Settings',
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.primary,
-                    ),
-                  ),
-                ),
-              ),
-              Material(
-                  type: MaterialType.transparency,
-                  child: ListTile(
-                    onTap: () {},
-                    // leading: Icon(Icons.settings),
-                    title: Text(
-                      'License',
-                      style: TextStyle(
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
-                    ),
-                  )),
-              Material(
-                type: MaterialType.transparency,
-                child: ListTile(
-                  onTap: () {},
-                  // leading: Icon(Icons.settings),
-                  title: Text(
-                    'Feedback',
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.primary,
                     ),
@@ -198,19 +162,66 @@ class _HomeDrawerState extends State<HomeDrawer> {
                 type: MaterialType.transparency,
                 child: ListTile(
                   onTap: () {
-                    Navigator.pop(context);
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const SettingScreen()));
                   },
                   // leading: Icon(Icons.settings),
                   title: Text(
+                    'Settings',
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
+                  ),
+                ),
+              ),
+              // Material(
+              //     type: MaterialType.transparency,
+              //     child: ListTile(
+              //       onTap: () {},
+              //       // leading: Icon(Icons.settings),
+              //       title: Text(
+              //         'License',
+              //         style: TextStyle(
+              //           color: Theme.of(context).colorScheme.primary,
+              //         ),
+              //       ),
+              //     )),
+              // Material(
+              //   type: MaterialType.transparency,
+              //   child: ListTile(
+              //     onTap: () {},
+              //     // leading: Icon(Icons.settings),
+              //     title: Text(
+              //       'Feedback',
+              //       style: TextStyle(
+              //         color: Theme.of(context).colorScheme.primary,
+              //       ),
+              //     ),
+              //   ),
+              // ),
+              Material(
+                type: MaterialType.transparency,
+                child: ListTile(
+                  onTap: () {
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const SignInScreen()),
+                        (route) => false);
+                  },
+                  // leading: Icon(Icons.settings),
+                  title: const Text(
                     'Log Out',
                     style: TextStyle(
                         color: Colors.red, fontWeight: FontWeight.w500),
                   ),
                 ),
               ),
-              Spacer(),
+              const Spacer(),
               DefaultTextStyle(
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 12,
                   color: Colors.white54,
                 ),
@@ -218,7 +229,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
                   margin: const EdgeInsets.symmetric(
                     vertical: 16.0,
                   ),
-                  child: Text(
+                  child: const Text(
                     'Terms of Service | Privacy Policy',
                     style: TextStyle(color: Colors.grey),
                   ),

@@ -16,7 +16,7 @@ class ThemeDataStyle {
     useMaterial3: true,
     brightness: Brightness.dark,
     colorScheme: ColorScheme.dark(
-      surface: Color(0xff121212),
+      surface: const Color(0xff121212),
       onSurface: Colors.grey.shade900,
       primary: Colors.white,
       secondary: Colors.deepPurple.shade700,
