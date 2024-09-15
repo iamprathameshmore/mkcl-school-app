@@ -1,9 +1,9 @@
-import 'package:client/ui/theme/theme_style.dart';
-import 'package:client/ui/providers/themedataprovider.dart';
-import 'package:client/ui/screens/auth/signInScreen.dart';
-import 'package:client/ui/screens/profile/instituteProfileScreen.dart';
-import 'package:client/ui/screens/profile/profileScreen.dart';
-import 'package:client/ui/screens/setting/settingScreen.dart';
+import 'package:client/core/theme/theme_style.dart';
+import 'package:client/presentation/providers/themedataprovider.dart';
+import 'package:client/presentation/screens/auth/signInScreen.dart';
+import 'package:client/presentation/screens/profile/instituteProfileScreen.dart';
+import 'package:client/presentation/screens/profile/profileScreen.dart';
+import 'package:client/presentation/screens/setting/settingScreen.dart';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';

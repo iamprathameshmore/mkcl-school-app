@@ -1,4 +1,4 @@
-import 'package:client/ui/theme/theme_style.dart';
+import 'package:client/core/theme/theme_style.dart';
 import 'package:flutter/material.dart';
 
 class ThemeProvider extends ChangeNotifier {

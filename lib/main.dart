@@ -1,11 +1,11 @@
-import 'package:client/ui/providers/themedataprovider.dart';
-import 'package:client/ui/routes/routes.dart';
+import 'package:client/presentation/providers/themedataprovider.dart';
+import 'package:client/presentation/routes/routes.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'ui/routes/routesName.dart';
+import 'presentation/routes/routesName.dart';
 
 void main() {
   if (kDebugMode) {

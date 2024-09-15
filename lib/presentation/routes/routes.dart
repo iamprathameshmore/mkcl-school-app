@@ -1,11 +1,11 @@
-import 'package:client/ui/screens/auth/signInScreen.dart';
-import 'package:client/ui/screens/auth/signUpScreen.dart';
-import 'package:client/ui/screens/batch/addBatchScreen.dart';
-import 'package:client/ui/screens/batch/batch.dart';
-import 'package:client/ui/screens/home/homeScreen.dart';
-import 'package:client/ui/screens/profile/instituteProfileScreen.dart';
-import 'package:client/ui/screens/profile/profileScreen.dart';
-import 'package:client/ui/screens/setting/settingScreen.dart';
+import 'package:client/presentation/screens/auth/signInScreen.dart';
+import 'package:client/presentation/screens/auth/signUpScreen.dart';
+import 'package:client/presentation/screens/batch/addBatchScreen.dart';
+import 'package:client/presentation/screens/batch/batch.dart';
+import 'package:client/presentation/screens/home/homeScreen.dart';
+import 'package:client/presentation/screens/profile/instituteProfileScreen.dart';
+import 'package:client/presentation/screens/profile/profileScreen.dart';
+import 'package:client/presentation/screens/setting/settingScreen.dart';
 import 'package:flutter/material.dart';
 
 import 'routesName.dart';

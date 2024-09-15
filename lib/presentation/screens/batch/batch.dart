@@ -1,5 +1,5 @@
-import 'package:client/ui/screens/batch/AttendanceScreen.dart';
-import 'package:client/ui/widgets/layouts/personListWidget.dart';
+import 'package:client/presentation/screens/batch/AttendanceScreen.dart';
+import 'package:client/presentation/widgets/layouts/personListWidget.dart';
 import 'package:flutter/material.dart';
 
 class Batch extends StatefulWidget {

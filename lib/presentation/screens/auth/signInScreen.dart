@@ -1,10 +1,10 @@
-import 'package:client/ui/theme/theme_style.dart';
-import 'package:client/ui/providers/themedataprovider.dart';
-import 'package:client/ui/screens/auth/signUpScreen.dart';
-import 'package:client/ui/widgets/components/customEmail.Widget.dart';
+import 'package:client/core/theme/theme_style.dart';
+import 'package:client/presentation/providers/themedataprovider.dart';
+import 'package:client/presentation/screens/auth/signUpScreen.dart';
+import 'package:client/presentation/widgets/components/customEmail.Widget.dart';
 
-import 'package:client/ui/widgets/components/focusChangeUtils.dart';
-import 'package:client/ui/widgets/components/customBtn.Widget.dart';
+import 'package:client/presentation/widgets/components/focusChangeUtils.dart';
+import 'package:client/presentation/widgets/components/customBtn.Widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:form_validator/form_validator.dart';

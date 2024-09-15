@@ -1,6 +1,6 @@
-import 'package:client/ui/theme/theme_style.dart';
-import 'package:client/ui/providers/themedataprovider.dart';
-import 'package:client/ui/screens/home/homeScreen.dart';
+import 'package:client/core/theme/theme_style.dart';
+import 'package:client/presentation/providers/themedataprovider.dart';
+import 'package:client/presentation/screens/home/homeScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:form_validator/form_validator.dart';

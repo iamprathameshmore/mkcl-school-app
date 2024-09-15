@@ -1,9 +1,9 @@
 // ignore: file_names
-import 'package:client/ui/screens/batch/addBatchScreen.dart';
-import 'package:client/ui/screens/batch/batch.dart';
-import 'package:client/ui/screens/profile/profileScreen.dart';
-import 'package:client/ui/widgets/layouts/drawerWidget.dart';
-import 'package:client/ui/widgets/layouts/batchesWidget.dart';
+import 'package:client/presentation/screens/batch/addBatchScreen.dart';
+import 'package:client/presentation/screens/batch/batch.dart';
+import 'package:client/presentation/screens/profile/profileScreen.dart';
+import 'package:client/presentation/widgets/layouts/drawerWidget.dart';
+import 'package:client/presentation/widgets/layouts/batchesWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 
