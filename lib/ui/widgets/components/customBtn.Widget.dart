@@ -1,35 +1,50 @@
 import "package:flutter/material.dart";
 
 class CustombtnWidget extends StatelessWidget {
-  final OnTap;
-  final nameBTN;
-  const CustombtnWidget({super.key, this.OnTap, this.nameBTN});
+  final VoidCallback? onTap;
+  final String buttonText;
+  final bool isLoading;
+
+  const CustombtnWidget({
+    super.key,
+    required this.onTap,
+    required this.buttonText,
+    this.isLoading = false,
+  });
 
   @override
   Widget build(BuildContext context) {
+    bool isLoading = true;
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Material(
         color: Colors.indigo,
         shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(5.0),
-            side: const BorderSide(color: Colors.indigo)),
+          borderRadius: BorderRadius.circular(5.0),
+          side: const BorderSide(color: Colors.indigo),
+        ),
         child: InkWell(
-          onTap: OnTap,
+          onTap: isLoading ? null : onTap,
           child: Container(
             height: 50,
             width: double.infinity,
             alignment: Alignment.center,
-            decoration: BoxDecoration(
-                // color: Colors.indigo.shade500
-                borderRadius: BorderRadius.circular(5)),
-            child: Text(
-              nameBTN,
-              style: const TextStyle(
-                  fontSize: 17,
-                  color: Colors.white,
-                  fontWeight: FontWeight.w500),
-            ),
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(5)),
+            child: isLoading
+                ? const Padding(
+                    padding: EdgeInsets.all(8),
+                    child: CircularProgressIndicator(
+                      color: Colors.white,
+                    ),
+                  )
+                : Text(
+                    buttonText,
+                    style: const TextStyle(
+                      fontSize: 17,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
           ),
         ),
       ),

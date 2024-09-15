@@ -1,4 +1,4 @@
-import 'package:client/core/theme/themedataprovider.dart';
+import 'package:client/ui/providers/themedataprovider.dart';
 import 'package:client/ui/routes/routes.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';

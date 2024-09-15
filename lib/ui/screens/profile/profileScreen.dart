@@ -1,5 +1,6 @@
-import 'package:client/core/theme/theme_style.dart';
-import 'package:client/core/theme/themedataprovider.dart';
+import 'package:client/ui/theme/theme_style.dart';
+import 'package:client/ui/providers/themedataprovider.dart';
+import 'package:client/ui/screens/setting/settingScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -28,16 +29,10 @@ class _ProfileState extends State<ProfileScreen> {
             centerTitle: true,
             actions: [
               IconButton(
-                onPressed: () {
-                  themeProvider.changeTheme();
-                },
-                icon: Icon(
-                  themeProvider.themeDataStyle == ThemeDataStyle.dark
-                      ? Icons.sunny
-                      : Icons.nightlight,
-                  color: Colors.grey,
-                ),
-              ),
+                  onPressed: () {
+                    Navigator.pushReplacementNamed(context, 'settingScreen');
+                  },
+                  icon: const Icon(Icons.settings_outlined)),
               const SizedBox(
                 width: 7,
               )
@@ -46,25 +41,6 @@ class _ProfileState extends State<ProfileScreen> {
           SliverToBoxAdapter(
               child: SingleChildScrollView(
             child: Column(children: [
-              // Stack(
-              //   children: [
-              //     Padding(
-              //       padding: const EdgeInsets.all(0.0),
-              //       child: Container(
-              //         height: 140,
-              //         width: double.infinity,
-              //         decoration: const BoxDecoration(
-              //             // color: Colors.amber,
-              //             border: Border(
-              //                 bottom: BorderSide(width: 1, color: Colors.grey))),
-              //         child: Image.network(
-              //             fit: BoxFit.cover,
-              //             'https://random.imagecdn.app/500/150'),
-              //       ),
-              //     ),
-
-              //   ],
-              // ),
               Container(
                 height: 140,
                 // width: double.infinity,

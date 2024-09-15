@@ -1,5 +1,5 @@
-import 'package:client/core/theme/theme_style.dart';
-import 'package:client/core/theme/themedataprovider.dart';
+import 'package:client/ui/theme/theme_style.dart';
+import 'package:client/ui/providers/themedataprovider.dart';
 import 'package:client/ui/screens/auth/signInScreen.dart';
 import 'package:client/ui/screens/profile/instituteProfileScreen.dart';
 import 'package:client/ui/screens/profile/profileScreen.dart';

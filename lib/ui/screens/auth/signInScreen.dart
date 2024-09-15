@@ -1,5 +1,5 @@
-import 'package:client/core/theme/theme_style.dart';
-import 'package:client/core/theme/themedataprovider.dart';
+import 'package:client/ui/theme/theme_style.dart';
+import 'package:client/ui/providers/themedataprovider.dart';
 import 'package:client/ui/screens/auth/signUpScreen.dart';
 import 'package:client/ui/widgets/components/customEmail.Widget.dart';
 
@@ -142,7 +142,9 @@ class _SignInScreenState extends State<SignInScreen> {
                         borderRadius: BorderRadius.circular(5))),
               ),
             ),
-            CustomEmailWidget(),
+            // const CustomEmailWidget(
+            //   name: "Email",
+            // ),
             Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ValueListenableBuilder(
@@ -257,8 +259,10 @@ class _SignInScreenState extends State<SignInScreen> {
             // ),
 
             CustombtnWidget(
-              nameBTN: 'SIGN IN',
-              OnTap: () {
+              buttonText: 'SIGN IN',
+              isLoading: false,
+              onTap: () {
+                isLoading = true;
                 print("print on CustomBtn");
               },
             ),

@@ -18,18 +18,23 @@ class AppRoutes {
 
       case Routesname.signUp:
         return MaterialPageRoute(builder: (context) => const SignUpScreen());
+
       case Routesname.home:
         return MaterialPageRoute(builder: (context) => const HomeScreen());
+
       case Routesname.profile:
         return MaterialPageRoute(builder: (context) => const ProfileScreen());
+
       case Routesname.instituteProfile:
         return MaterialPageRoute(
             builder: (context) => const InstituteProfileScreen());
+
       case Routesname.batch:
         return MaterialPageRoute(builder: (context) => const Batch());
 
       case Routesname.addBatch:
         return MaterialPageRoute(builder: (context) => const AddBatchScreen());
+
       case Routesname.setting:
         return MaterialPageRoute(builder: (context) => const SettingScreen());
 

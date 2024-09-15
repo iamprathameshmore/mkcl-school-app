@@ -37,8 +37,16 @@ class _InstituteProfileScreenState extends State<InstituteProfileScreen>
                 color: Colors.grey.shade700, fontWeight: FontWeight.w500),
           ),
           centerTitle: true,
-          actions: const [
-            SizedBox(
+          actions: [
+            IconButton(
+                onPressed: () {
+                  Navigator.pushReplacementNamed(context, 'settingScreen');
+                },
+                icon: const Icon(Icons.settings_outlined)),
+            const SizedBox(
+              width: 7,
+            ),
+            const SizedBox(
               width: 7,
             )
           ],
@@ -46,26 +54,6 @@ class _InstituteProfileScreenState extends State<InstituteProfileScreen>
         body: SingleChildScrollView(
           child: Column(
             children: [
-              // Stack(
-              //   children: [
-              //     Padding(
-              //       padding: const EdgeInsets.all(0.0),
-              //       child: Container(
-              //         height: 140,
-              //         width: double.infinity,
-              //         decoration: const BoxDecoration(
-              //             // color: Colors.amber,
-              //             border: Border(
-              //                 bottom:
-              //                     BorderSide(width: 1, color: Colors.grey))),
-              //         child: Image.network(
-              //             fit: BoxFit.cover,
-              //             'https://random.imagecdn.app/500/150'),
-              //       ),
-              //     ),
-
-              //   ],
-              // ),
               Container(
                 height: 130,
                 // width: double.infinity,
