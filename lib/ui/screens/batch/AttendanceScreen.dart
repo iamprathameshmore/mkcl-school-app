@@ -1,4 +1,4 @@
-import 'package:client/ui/widgets/attendanceList.dart';
+import 'package:client/ui/widgets/layouts/attendanceList.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';

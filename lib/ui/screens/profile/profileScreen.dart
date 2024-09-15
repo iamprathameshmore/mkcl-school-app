@@ -130,14 +130,12 @@ class _ProfileState extends State<ProfileScreen> {
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 21, vertical: 5),
-                child: Container(
-                  child: Text(
-                    'In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before the final copy is available.',
-                    style: TextStyle(
-                        // fontSize: 15,
-                        // fontWeight: FontWeight.w300,
-                        color: Theme.of(context).colorScheme.primary),
-                  ),
+                child: Text(
+                  'In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before the final copy is available.',
+                  style: TextStyle(
+                      // fontSize: 15,
+                      // fontWeight: FontWeight.w300,
+                      color: Theme.of(context).colorScheme.primary),
                 ),
               ),
               const Row(

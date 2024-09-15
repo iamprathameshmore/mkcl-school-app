@@ -1,5 +1,5 @@
-import 'package:client/ui/screens/AttendanceScreen.dart';
-import 'package:client/ui/widgets/personListWidget.dart';
+import 'package:client/ui/screens/batch/AttendanceScreen.dart';
+import 'package:client/ui/widgets/layouts/personListWidget.dart';
 import 'package:flutter/material.dart';
 
 class Batch extends StatefulWidget {
@@ -30,7 +30,7 @@ class _BatchState extends State<Batch> with SingleTickerProviderStateMixin {
       appBar: AppBar(
         foregroundColor: Colors.grey,
         title: const Text(
-          'Batch',
+          'Batch Name',
           style: TextStyle(color: Colors.indigo, fontWeight: FontWeight.w500),
         ),
         centerTitle: true,

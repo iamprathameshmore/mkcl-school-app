@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../widgets/batchesWidget.dart';
+import '../../widgets/layouts/batchesWidget.dart';
 
 class InstituteProfileScreen extends StatefulWidget {
   const InstituteProfileScreen({super.key});
@@ -116,14 +116,12 @@ class _InstituteProfileScreenState extends State<InstituteProfileScreen>
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 21, vertical: 5),
-                child: Container(
-                  child: Text(
-                    'In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before the final copy is available.',
-                    style: TextStyle(
-                        // fontSize: 15,
-                        // fontWeight: FontWeight.w300,
-                        color: Theme.of(context).colorScheme.primary),
-                  ),
+                child: Text(
+                  'In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before the final copy is available.',
+                  style: TextStyle(
+                      // fontSize: 15,
+                      // fontWeight: FontWeight.w300,
+                      color: Theme.of(context).colorScheme.primary),
                 ),
               ),
 
@@ -195,7 +193,7 @@ class _InstituteProfileScreenState extends State<InstituteProfileScreen>
                 child: TabBarView(
                   controller: _tabController,
                   children: const [
-                    BatchesWidgets(),
+                    Center(child: Text("Content for Tab 2")),
                     Center(child: Text("Content for Tab 2")),
                     Center(child: Text("Content for Tab 3")),
                     Center(child: Text("Content for Tab 4")),

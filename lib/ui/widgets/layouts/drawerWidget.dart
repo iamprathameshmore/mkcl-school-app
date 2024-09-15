@@ -1,13 +1,13 @@
 import 'package:client/core/theme/theme_style.dart';
 import 'package:client/core/theme/themedataprovider.dart';
+import 'package:client/ui/screens/auth/signInScreen.dart';
+import 'package:client/ui/screens/profile/instituteProfileScreen.dart';
+import 'package:client/ui/screens/profile/profileScreen.dart';
+import 'package:client/ui/screens/setting/settingScreen.dart';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-
-import '../screens/instituteProfileScreen.dart';
-import '../screens/profileScreen.dart';
-import '../screens/settingScreen.dart';
-import '../screens/signinScreen.dart';
 
 DateTime now = DateTime.now();
 

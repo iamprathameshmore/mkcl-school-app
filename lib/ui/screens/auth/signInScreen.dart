@@ -1,13 +1,14 @@
 import 'package:client/core/theme/theme_style.dart';
 import 'package:client/core/theme/themedataprovider.dart';
-import 'package:client/ui/screens/homeScreen.dart';
-import 'package:client/ui/screens/signUpScreen.dart';
+import 'package:client/ui/screens/auth/signUpScreen.dart';
+import 'package:client/ui/widgets/components/customEmail.Widget.dart';
+
+import 'package:client/ui/widgets/components/focusChangeUtils.dart';
+import 'package:client/ui/widgets/components/customBtn.Widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:form_validator/form_validator.dart';
 import 'package:provider/provider.dart';
-
-import '../components/focusChangeUtils.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -26,7 +27,24 @@ class _SignInScreenState extends State<SignInScreen> {
     FocusNode emailFocusNode = FocusNode();
     FocusNode passwordFocusNode = FocusNode();
 
-    ValueNotifier<bool> passwordText = ValueNotifier<bool>(true);
+    final formKey = GlobalKey<FormState>();
+
+    ValueNotifier<bool> passwordText = ValueNotifier<bool>(false);
+    bool isLoading = false;
+
+    void handleButtonPress() async {
+      setState(() {
+        isLoading = false;
+      });
+
+      // Simulate a delay for demonstration (e.g., making an API call)
+      await Future.delayed(const Duration(seconds: 10));
+
+      setState(() {
+        isLoading = false;
+      });
+    }
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.surface,
@@ -66,23 +84,21 @@ class _SignInScreenState extends State<SignInScreen> {
               height: 100,
               color: Colors.indigo,
             ),
-            Container(
-              child: Column(
-                children: [
-                  Text(
-                    'Mkcl School',
-                    style: TextStyle(
-                      color: Colors.indigo.shade600,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 30,
-                    ),
+            Column(
+              children: [
+                Text(
+                  'Mkcl School',
+                  style: TextStyle(
+                    color: Colors.indigo.shade600,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 30,
                   ),
-                  const Text(
-                    'Creating a Knowledge Lit World',
-                    style: TextStyle(color: Colors.grey),
-                  )
-                ],
-              ),
+                ),
+                const Text(
+                  'Creating a Knowledge Lit World',
+                  style: TextStyle(color: Colors.grey),
+                )
+              ],
             ),
             const SizedBox(
               height: 100,
@@ -126,93 +142,125 @@ class _SignInScreenState extends State<SignInScreen> {
                         borderRadius: BorderRadius.circular(5))),
               ),
             ),
+            CustomEmailWidget(),
             Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ValueListenableBuilder(
                     valueListenable: passwordText,
                     builder: (context, value, child) {
-                      return TextFormField(
-                        keyboardType: TextInputType.visiblePassword,
-                        focusNode: passwordFocusNode,
-                        controller: passwordController,
-                        style: TextStyle(
-                            color: Theme.of(context).colorScheme.primary),
-                        validator: ValidationBuilder(optional: true)
-                            .email()
-                            .maxLength(50)
-                            .build(),
-                        obscureText: passwordText.value,
-                        decoration: InputDecoration(
-                            suffixIcon: Padding(
-                              padding: const EdgeInsets.only(right: 8),
-                              child: IconButton(
-                                  onPressed: () {
-                                    passwordText.value = !passwordText.value;
-                                  },
-                                  icon: Icon(
-                                    passwordText.value
-                                        ? Icons.visibility_off_outlined
-                                        : Icons.visibility_outlined,
-                                    color: Colors.grey.shade700,
-                                  )),
-                            ),
+                      return Form(
+                        key: formKey,
+                        child: TextFormField(
+                          keyboardType: TextInputType.emailAddress,
+                          focusNode: passwordFocusNode,
+                          controller: passwordController,
+                          style: TextStyle(
+                              color: Theme.of(context).colorScheme.primary),
+                          validator: (value) {
+                            if (value!.isEmpty ||
+                                !RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                                    .hasMatch(value)) {
+                              return 'Enter a valid email!';
+                            }
+                            return null;
+                          },
+                          obscureText: passwordText.value,
+                          decoration: InputDecoration(
+                              suffixIcon: Padding(
+                                padding: const EdgeInsets.only(right: 8),
+                                child: IconButton(
+                                    onPressed: () {
+                                      passwordText.value = !passwordText.value;
+                                    },
+                                    icon: Icon(
+                                      passwordText.value
+                                          ? Icons.visibility_off_outlined
+                                          : Icons.visibility_outlined,
+                                      color: Colors.grey.shade700,
+                                    )),
+                              ),
 
-                            // focusColor: Colors.amber,
-                            fillColor: Theme.of(context).colorScheme.onSurface,
-                            filled: true,
-                            labelText: 'Password',
-                            labelStyle: TextStyle(
+                              // focusColor: Colors.amber,
+                              fillColor:
+                                  Theme.of(context).colorScheme.onSurface,
+                              filled: true,
+                              labelText: 'Password',
+                              labelStyle: TextStyle(
+                                  color: Theme.of(context).colorScheme.primary,
+                                  fontWeight: FontWeight.w400),
+                              prefixIcon: Icon(
+                                CupertinoIcons.lock,
                                 color: Theme.of(context).colorScheme.primary,
-                                fontWeight: FontWeight.w400),
-                            prefixIcon: Icon(
-                              CupertinoIcons.lock,
-                              color: Theme.of(context).colorScheme.primary,
-                            ),
-                            enabled: true,
-                            focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .onSurface),
-                                borderRadius: BorderRadius.circular(5)),
-                            enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .onSurface),
-                                borderRadius: BorderRadius.circular(5))),
+                              ),
+                              enabled: true,
+                              focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .onSurface),
+                                  borderRadius: BorderRadius.circular(5)),
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .onSurface),
+                                  borderRadius: BorderRadius.circular(5))),
+                        ),
                       );
                     })),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Material(
-                color: Colors.indigo,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5.0),
-                    side: const BorderSide(color: Colors.indigo)),
-                child: InkWell(
-                  onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const HomeScreen()));
-                    // ToastMsg.flushbarErrorMsg('this is an text msg', context);
-                  },
-                  child: Container(
-                    height: 50,
-                    width: double.infinity,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                        // color: Colors.indigo.shade500
-                        borderRadius: BorderRadius.circular(5)),
-                    child: const Text(
-                      'SIGN IN',
-                      style: TextStyle(
-                          fontSize: 17,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w500),
-                    ),
-                  ),
-                ),
-              ),
+            // Padding(
+            //   padding: const EdgeInsets.all(8.0),
+            //   child: Material(
+            //     color: Colors.indigo,
+            //     shape: RoundedRectangleBorder(
+            //         borderRadius: BorderRadius.circular(5.0),
+            //         side: const BorderSide(color: Colors.indigo)),
+            //     child: InkWell(
+            //       onTap: isLoading
+            //           ? null
+            //           : () {
+            //               // Validate returns true if the form is valid, or false otherwise.
+            //               if (_formKey.currentState!.validate()) {
+            //                 // If the form is valid, display a snackbar. In the real world,
+            //                 // you'd often call a server or save the information in a database.
+            //                 ScaffoldMessenger.of(context).showSnackBar(
+            //                   const SnackBar(content: Text('Processing Data')),
+            //                 );
+            //               }
+            //             },
+            //       child: isLoading
+            //           ? SizedBox(
+            //               width: 20,
+            //               height: 20,
+            //               child: CircularProgressIndicator(
+            //                 color: Colors.white,
+            //                 strokeWidth: 2,
+            //               ),
+            //             )
+            //           : Container(
+            //               height: 50,
+            //               width: double.infinity,
+            //               alignment: Alignment.center,
+            //               decoration: BoxDecoration(
+            //                   // color: Colors.indigo.shade500
+            //                   borderRadius: BorderRadius.circular(5)),
+            //               child: const Text(
+            //                 'SIGN IN',
+            //                 style: TextStyle(
+            //                     fontSize: 17,
+            //                     color: Colors.white,
+            //                     fontWeight: FontWeight.w500),
+            //               ),
+            //             ),
+            //     ),
+            //   ),
+            // ),
+
+            CustombtnWidget(
+              nameBTN: 'SIGN IN',
+              OnTap: () {
+                print("print on CustomBtn");
+              },
             ),
             Padding(
                 padding: const EdgeInsets.all(8.0),
