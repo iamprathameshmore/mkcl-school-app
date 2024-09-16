@@ -1,25 +1,25 @@
-import 'package:client/presentation/providers/themedataprovider.dart';
 import 'package:client/presentation/routes/routes.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'presentation/routes/routesName.dart';
 
 void main() {
   if (kDebugMode) {
     return runApp(DevicePreview(
-        enabled: true,
-        builder: (context) => ChangeNotifierProvider(
-              create: (context) => ThemeProvider(),
-              child: const MyApp(),
-            )));
-  } else {
-    return runApp(ChangeNotifierProvider(
-      create: (context) => ThemeProvider(),
-      child: const MyApp(),
+      enabled: true,
+      builder: (context) => const ProviderScope(
+        child: MyApp(),
+      ),
     ));
+  } else {
+    return runApp(
+      const ProviderScope(
+        child: MyApp(),
+      ),
+    );
   }
 }
 
@@ -32,8 +32,8 @@ class MyApp extends StatelessWidget {
     if (kDebugMode) {
       print('build');
     }
-    return MaterialApp(
-        theme: Provider.of<ThemeProvider>(context).themeDataStyle,
+    return const MaterialApp(
+        // theme: Provider.of<ThemeProvider>(context).themeDataStyle,
         debugShowCheckedModeBanner: false,
         initialRoute: Routesname.signIn,
         onGenerateRoute: AppRoutes.generateRoute);

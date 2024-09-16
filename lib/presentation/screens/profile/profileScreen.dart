@@ -1,6 +1,4 @@
-import 'package:client/core/theme/theme_style.dart';
 import 'package:client/presentation/providers/themedataprovider.dart';
-import 'package:client/presentation/screens/setting/settingScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -14,7 +12,7 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
-    final themeProvider = Provider.of<ThemeProvider>(context);
+    Provider.of<ThemeProvider>(context);
     return Scaffold(
       body: CustomScrollView(
         slivers: [

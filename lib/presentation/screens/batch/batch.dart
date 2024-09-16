@@ -87,7 +87,7 @@ class _BatchState extends State<Batch> with SingleTickerProviderStateMixin {
                 Expanded(
                     child: ListView.builder(
                         itemCount: 100,
-                        itemBuilder: (BuildContext context, int Index) {
+                        itemBuilder: (BuildContext context, int index) {
                           return const Personlistwidget();
                         })),
               ],

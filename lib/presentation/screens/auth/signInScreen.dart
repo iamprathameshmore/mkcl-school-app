@@ -1,14 +1,10 @@
-import 'package:client/core/theme/theme_style.dart';
-import 'package:client/presentation/providers/themedataprovider.dart';
 import 'package:client/presentation/screens/auth/signUpScreen.dart';
-import 'package:client/presentation/widgets/components/customEmail.Widget.dart';
 
-import 'package:client/presentation/widgets/components/focusChangeUtils.dart';
-import 'package:client/presentation/widgets/components/customBtn.Widget.dart';
+import 'package:client/presentation/widgets/common/focusChangeUtils.dart';
+import 'package:client/presentation/widgets/common/customBtn.Widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:form_validator/form_validator.dart';
-import 'package:provider/provider.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -20,7 +16,7 @@ class SignInScreen extends StatefulWidget {
 class _SignInScreenState extends State<SignInScreen> {
   @override
   Widget build(BuildContext context) {
-    final themeProvider = Provider.of<ThemeProvider>(context);
+    // final themeProvider = Provider.of<ThemeProvider>(context);
     final emailController = TextEditingController();
     final passwordController = TextEditingController();
 
@@ -30,20 +26,6 @@ class _SignInScreenState extends State<SignInScreen> {
     final formKey = GlobalKey<FormState>();
 
     ValueNotifier<bool> passwordText = ValueNotifier<bool>(false);
-    bool isLoading = false;
-
-    void handleButtonPress() async {
-      setState(() {
-        isLoading = false;
-      });
-
-      // Simulate a delay for demonstration (e.g., making an API call)
-      await Future.delayed(const Duration(seconds: 10));
-
-      setState(() {
-        isLoading = false;
-      });
-    }
 
     return Scaffold(
       appBar: AppBar(
@@ -55,19 +37,19 @@ class _SignInScreenState extends State<SignInScreen> {
               color: Colors.indigo.shade500, fontWeight: FontWeight.w500),
         ),
         centerTitle: true,
-        actions: [
-          IconButton(
-            onPressed: () {
-              themeProvider.changeTheme();
-            },
-            icon: Icon(
-              themeProvider.themeDataStyle == ThemeDataStyle.dark
-                  ? Icons.sunny
-                  : Icons.nightlight,
-              color: Colors.grey,
-            ),
-          ),
-          const SizedBox(
+        actions: const [
+          // IconButton(
+          //   onPressed: () {
+          //     themeProvider.changeTheme();
+          //   },
+          //   icon: Icon(
+          //     themeProvider.themeDataStyle == ThemeDataStyle.dark
+          //         ? Icons.sunny
+          //         : Icons.nightlight,
+          //     color: Colors.grey,
+          //   ),
+          // ),
+          SizedBox(
             width: 10,
           )
         ],
@@ -257,12 +239,31 @@ class _SignInScreenState extends State<SignInScreen> {
             //     ),
             //   ),
             // ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, 'forgetPasswordScreen');
+                    },
+                    child: Text(
+                      "Forget Password?",
+                      style: TextStyle(
+                          color: Colors.indigo.shade500,
+                          fontWeight: FontWeight.w500),
+                    ),
+                  ),
+                )
+              ],
+            ),
 
             CustombtnWidget(
               buttonText: 'SIGN IN',
               isLoading: false,
               onTap: () {
-                isLoading = true;
                 print("print on CustomBtn");
               },
             ),

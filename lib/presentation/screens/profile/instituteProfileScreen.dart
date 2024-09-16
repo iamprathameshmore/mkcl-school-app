@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../widgets/layouts/batchesWidget.dart';
 
 class InstituteProfileScreen extends StatefulWidget {
   const InstituteProfileScreen({super.key});

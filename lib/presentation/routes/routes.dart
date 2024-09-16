@@ -1,3 +1,6 @@
+import 'package:client/presentation/screens/auth/forgetPasswordScreen.dart';
+import 'package:client/presentation/screens/auth/newPasswordScreen.dart';
+import 'package:client/presentation/screens/auth/otpScreen.dart';
 import 'package:client/presentation/screens/auth/signInScreen.dart';
 import 'package:client/presentation/screens/auth/signUpScreen.dart';
 import 'package:client/presentation/screens/batch/addBatchScreen.dart';
@@ -18,6 +21,17 @@ class AppRoutes {
 
       case Routesname.signUp:
         return MaterialPageRoute(builder: (context) => const SignUpScreen());
+
+      case Routesname.forgetPassword:
+        return MaterialPageRoute(
+            builder: (context) => const ForgetPasswordScreen());
+
+      case Routesname.newPassword:
+        return MaterialPageRoute(
+            builder: (context) => const NewPasswordScreen());
+
+      case Routesname.otp:
+        return MaterialPageRoute(builder: (context) => const OtpScreen());
 
       case Routesname.home:
         return MaterialPageRoute(builder: (context) => const HomeScreen());
