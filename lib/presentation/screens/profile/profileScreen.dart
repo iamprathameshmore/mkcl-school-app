@@ -1,18 +1,14 @@
 import 'package:client/presentation/providers/themedataprovider.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:provider/provider.dart';
 
-class ProfileScreen extends StatefulWidget {
+class ProfileScreen extends ConsumerWidget {
   const ProfileScreen({super.key});
 
   @override
-  State<ProfileScreen> createState() => _ProfileState();
-}
-
-class _ProfileState extends State<ProfileScreen> {
-  @override
-  Widget build(BuildContext context) {
-    Provider.of<ThemeProvider>(context);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final themeData = ref.watch(themeProvider);
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -27,10 +23,14 @@ class _ProfileState extends State<ProfileScreen> {
             centerTitle: true,
             actions: [
               IconButton(
-                  onPressed: () {
-                    Navigator.pushReplacementNamed(context, 'settingScreen');
-                  },
-                  icon: const Icon(Icons.settings_outlined)),
+                onPressed: () {
+                  ref.read(themeProvider.notifier).changeTheme();
+                },
+                icon: const Icon(
+                  ThemeData.light != null ? Icons.sunny : Icons.nightlight,
+                  color: Colors.grey,
+                ),
+              ),
               const SizedBox(
                 width: 7,
               )

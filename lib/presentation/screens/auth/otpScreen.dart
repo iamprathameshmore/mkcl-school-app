@@ -1,19 +1,15 @@
 import "package:client/core/theme/theme_style.dart";
 import "package:client/presentation/providers/themedataprovider.dart";
 import "package:flutter/material.dart";
+import "package:hooks_riverpod/hooks_riverpod.dart";
 import "package:provider/provider.dart";
 
-class OtpScreen extends StatefulWidget {
+class OtpScreen extends ConsumerWidget {
   const OtpScreen({super.key});
 
   @override
-  State<OtpScreen> createState() => _OtpScreenState();
-}
-
-class _OtpScreenState extends State<OtpScreen> {
-  @override
-  Widget build(BuildContext context) {
-    final themeProvider = Provider.of<ThemeProvider>(context);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final themeData = ref.watch(themeProvider);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.surface,
@@ -27,12 +23,10 @@ class _OtpScreenState extends State<OtpScreen> {
         actions: [
           IconButton(
             onPressed: () {
-              themeProvider.changeTheme();
+              ref.read(themeProvider.notifier).changeTheme();
             },
-            icon: Icon(
-              themeProvider.themeDataStyle == ThemeDataStyle.dark
-                  ? Icons.sunny
-                  : Icons.nightlight,
+            icon: const Icon(
+              ThemeData.light != null ? Icons.sunny : Icons.nightlight,
               color: Colors.grey,
             ),
           ),

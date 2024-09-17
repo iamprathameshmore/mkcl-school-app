@@ -1,4 +1,5 @@
 // ignore: file_names
+import 'package:client/presentation/providers/batchesProviders.dart';
 import 'package:client/presentation/screens/batch/addBatchScreen.dart';
 import 'package:client/presentation/screens/batch/batch.dart';
 import 'package:client/presentation/screens/profile/profileScreen.dart';
@@ -6,19 +7,21 @@ import 'package:client/presentation/widgets/layouts/drawerWidget.dart';
 import 'package:client/presentation/widgets/layouts/batchesWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
 
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  ConsumerState<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends ConsumerState<HomeScreen> {
   final _advancedDrawerController = AdvancedDrawerController();
 
   @override
   Widget build(BuildContext context) {
+    final list = ref.watch(BatchProviders.listBatchesProvider);
     return AdvancedDrawer(
         backdrop: Container(
           // width: double.infinity,
@@ -40,9 +43,6 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         drawer: const HomeDrawer(),
         child: Scaffold(
-          // appBar: AppBar(
-
-          // ),
           body: CustomScrollView(
             slivers: [
               SliverAppBar(
@@ -113,10 +113,15 @@ class _HomeScreenState extends State<HomeScreen> {
                             MaterialPageRoute(
                                 builder: (context) => const Batch()));
                       },
-                      child: const BatchesWidgets(),
+                      child: BatchesWidgets(
+                        name: list[index].name,
+                        date: list[index].data,
+                        time: list[index].time,
+                        username: list[index].name,
+                      ),
                     );
                   },
-                  childCount: 20,
+                  childCount: list.length,
                 ),
               ),
               const SliverToBoxAdapter(

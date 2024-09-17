@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class BatchesWidgets extends StatefulWidget {
-  const BatchesWidgets({super.key});
+class BatchesWidgets extends StatelessWidget {
+  final name;
+  final username;
+  final date;
+  final time;
+  const BatchesWidgets(
+      {super.key, this.name, this.username, this.date, this.time});
 
-  @override
-  State<BatchesWidgets> createState() => _BatchesWidgetsState();
-}
-
-class _BatchesWidgetsState extends State<BatchesWidgets> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -28,9 +28,9 @@ class _BatchesWidgetsState extends State<BatchesWidgets> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: EdgeInsets.all(8.0),
                       child: Text(
-                        "Batch 1",
+                        name,
                         style: TextStyle(
                             color: Theme.of(context).colorScheme.primary),
                       ),
@@ -49,7 +49,7 @@ class _BatchesWidgetsState extends State<BatchesWidgets> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        'Prathamesh More',
+                        username,
                         style: TextStyle(
                             color: Theme.of(context).colorScheme.primary),
                       ),
@@ -57,7 +57,7 @@ class _BatchesWidgetsState extends State<BatchesWidgets> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        '16 Feb - 9.00am',
+                        '$date - $time',
                         style: TextStyle(
                             color: Theme.of(context).colorScheme.primary),
                       ),

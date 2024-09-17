@@ -4,19 +4,17 @@ import 'package:client/presentation/screens/home/homeScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:form_validator/form_validator.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:provider/provider.dart';
 
-class SignUpScreen extends StatefulWidget {
+class SignUpScreen extends ConsumerWidget {
   const SignUpScreen({super.key});
 
   @override
-  State<SignUpScreen> createState() => _SignUpScreenState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    // final themeProvider = Provider.of<ThemeProvider>(context);
+    final themeData = ref.watch(themeProvider);
 
-class _SignUpScreenState extends State<SignUpScreen> {
-  @override
-  Widget build(BuildContext context) {
-    final themeProvider = Provider.of<ThemeProvider>(context);
     final nameController = TextEditingController();
     final emailController = TextEditingController();
     final passwordController = TextEditingController();
@@ -35,12 +33,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
         actions: [
           IconButton(
             onPressed: () {
-              themeProvider.changeTheme();
+              ref.read(themeProvider.notifier).changeTheme();
             },
-            icon: Icon(
-              themeProvider.themeDataStyle == ThemeDataStyle.dark
-                  ? Icons.sunny
-                  : Icons.nightlight,
+            icon: const Icon(
+              ThemeData.light != null ? Icons.sunny : Icons.nightlight,
               color: Colors.grey,
             ),
           ),

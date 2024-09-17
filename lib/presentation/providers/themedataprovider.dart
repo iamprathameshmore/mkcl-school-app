@@ -1,21 +1,19 @@
 import 'package:client/core/theme/theme_style.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ThemeProvider extends ChangeNotifier {
-  ThemeData _themeDataStyle = ThemeDataStyle.light;
-
-  ThemeData get themeDataStyle => _themeDataStyle;
-
-  set themeDataStyle(ThemeData themeData) {
-    _themeDataStyle = themeData;
-    notifyListeners();
-  }
+class ThemeNotifier extends StateNotifier<ThemeData> {
+  ThemeNotifier() : super(ThemeDataStyle.light);
 
   void changeTheme() {
-    if (_themeDataStyle == ThemeDataStyle.light) {
-      themeDataStyle = ThemeDataStyle.dark;
+    if (state == ThemeDataStyle.light) {
+      state = ThemeDataStyle.dark;
     } else {
-      themeDataStyle = ThemeDataStyle.light;
+      state = ThemeDataStyle.light;
     }
   }
 }
+
+final themeProvider = StateNotifierProvider<ThemeNotifier, ThemeData>(
+  (ref) => ThemeNotifier(),
+);

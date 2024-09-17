@@ -6,7 +6,7 @@ import 'dart:convert';
 class EducatorRemoteDataSource {
   final String apiUrl = educatorApiUrl;
 
-  Future<Educatormodel?> signIn(String email, String password) async {
+  Future<Educatormodel?> signIn(email, password) async {
     final response = await http.post(
       Uri.parse('$apiUrl/auth/signin/'),
       headers: {"Content-Type": "application/json"},

@@ -1,6 +1,12 @@
-import 'package:client/domain/entities/educatorEntities.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SignInProviders extends StateNotifier<AsyncValue<Educatorentities?>> {
-  SignInProviders(super.state);
+// This is a mock function simulating an asynchronous operation.
+Future<String> fetchUserData() async {
+  await Future.delayed(Duration(seconds: 2)); // Simulate network delay
+  return "Hello, Prathamesh!";
 }
+
+// Define a FutureProvider to provide data asynchronously
+final userDataProvider = FutureProvider<String>((ref) async {
+  return fetchUserData();
+});

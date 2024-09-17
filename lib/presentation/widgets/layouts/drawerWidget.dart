@@ -4,6 +4,8 @@ import 'package:client/presentation/screens/auth/signInScreen.dart';
 import 'package:client/presentation/screens/profile/instituteProfileScreen.dart';
 import 'package:client/presentation/screens/profile/profileScreen.dart';
 import 'package:client/presentation/screens/setting/settingScreen.dart';
+import 'package:riverpod/riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -11,20 +13,20 @@ import 'package:provider/provider.dart';
 
 DateTime now = DateTime.now();
 
-class HomeDrawer extends StatefulWidget {
+class HomeDrawer extends ConsumerStatefulWidget {
   const HomeDrawer({super.key});
 
   @override
-  State<HomeDrawer> createState() => _HomeDrawerState();
+  ConsumerState<HomeDrawer> createState() => _HomeDrawerState();
 }
 
-class _HomeDrawerState extends State<HomeDrawer> {
+class _HomeDrawerState extends ConsumerState<HomeDrawer> {
 // DateTime dateTime = DateTime.parse(variableName); <-- If you are using String as dateTime.
   String formattedDate = DateFormat.MMMEd().format(now);
 
   @override
   Widget build(BuildContext context) {
-    final themeProvider = Provider.of<ThemeProvider>(context);
+    // final themeProvider = Provider.of<ThemeProvider>(context);
     return SafeArea(
       child: SizedBox(
         width: 150,
@@ -42,35 +44,12 @@ class _HomeDrawerState extends State<HomeDrawer> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      IconButton(
-                        onPressed: () {
-                          themeProvider.changeTheme();
-                        },
-                        icon: Icon(
-                          themeProvider.themeDataStyle == ThemeDataStyle.dark
-                              ? Icons.sunny
-                              : Icons.nightlight,
-                          color: Colors.grey,
-                        ),
-                      ),
                       Text(
                         formattedDate,
                         style: TextStyle(
                             color: Theme.of(context).colorScheme.primary,
                             fontWeight: FontWeight.w500),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          themeProvider.themeDataStyle == ThemeDataStyle.dark
-                              ? 'Dark'
-                              : 'Light',
-                          style: const TextStyle(
-                              color: Colors.grey,
-                              fontSize: 15,
-                              fontWeight: FontWeight.w500),
-                        ),
-                      )
                     ],
                   ),
                 ),

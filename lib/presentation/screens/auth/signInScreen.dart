@@ -1,3 +1,5 @@
+import 'package:client/presentation/providers/signInProviders.dart';
+import 'package:client/presentation/providers/themedataprovider.dart';
 import 'package:client/presentation/screens/auth/signUpScreen.dart';
 
 import 'package:client/presentation/widgets/common/focusChangeUtils.dart';
@@ -5,18 +7,14 @@ import 'package:client/presentation/widgets/common/customBtn.Widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:form_validator/form_validator.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class SignInScreen extends StatefulWidget {
+class SignInScreen extends ConsumerWidget {
   const SignInScreen({super.key});
 
   @override
-  State<SignInScreen> createState() => _SignInScreenState();
-}
-
-class _SignInScreenState extends State<SignInScreen> {
-  @override
-  Widget build(BuildContext context) {
-    // final themeProvider = Provider.of<ThemeProvider>(context);
+  Widget build(BuildContext context, WidgetRef ref) {
+    ref.watch(themeProvider);
     final emailController = TextEditingController();
     final passwordController = TextEditingController();
 
@@ -26,6 +24,10 @@ class _SignInScreenState extends State<SignInScreen> {
     final formKey = GlobalKey<FormState>();
 
     ValueNotifier<bool> passwordText = ValueNotifier<bool>(false);
+
+    final asyncUserData = ref.watch(userDataProvider);
+
+    // asyncUserData.when(data: , error: , loading: , );
 
     return Scaffold(
       appBar: AppBar(
@@ -37,18 +39,16 @@ class _SignInScreenState extends State<SignInScreen> {
               color: Colors.indigo.shade500, fontWeight: FontWeight.w500),
         ),
         centerTitle: true,
-        actions: const [
-          // IconButton(
-          //   onPressed: () {
-          //     themeProvider.changeTheme();
-          //   },
-          //   icon: Icon(
-          //     themeProvider.themeDataStyle == ThemeDataStyle.dark
-          //         ? Icons.sunny
-          //         : Icons.nightlight,
-          //     color: Colors.grey,
-          //   ),
-          // ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              ref.read(themeProvider.notifier).changeTheme();
+            },
+            icon: const Icon(
+              ThemeData.light != null ? Icons.sunny : Icons.nightlight,
+              color: Colors.grey,
+            ),
+          ),
           SizedBox(
             width: 10,
           )

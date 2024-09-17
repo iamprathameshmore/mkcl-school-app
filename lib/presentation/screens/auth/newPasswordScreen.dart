@@ -1,19 +1,16 @@
 import 'package:client/core/theme/theme_style.dart';
 import 'package:client/presentation/providers/themedataprovider.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:provider/provider.dart';
 
-class NewPasswordScreen extends StatefulWidget {
+class NewPasswordScreen extends ConsumerWidget {
   const NewPasswordScreen({super.key});
 
   @override
-  State<NewPasswordScreen> createState() => _NewPasswordScreenState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final themeData = ref.watch(themeProvider);
 
-class _NewPasswordScreenState extends State<NewPasswordScreen> {
-  @override
-  Widget build(BuildContext context) {
-    final themeProvider = Provider.of<ThemeProvider>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.surface,
@@ -27,12 +24,10 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
         actions: [
           IconButton(
             onPressed: () {
-              themeProvider.changeTheme();
+              ref.read(themeProvider.notifier).changeTheme();
             },
-            icon: Icon(
-              themeProvider.themeDataStyle == ThemeDataStyle.dark
-                  ? Icons.sunny
-                  : Icons.nightlight,
+            icon: const Icon(
+              ThemeData.light != null ? Icons.sunny : Icons.nightlight,
               color: Colors.grey,
             ),
           ),
