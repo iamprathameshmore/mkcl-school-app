@@ -1,3 +1,4 @@
+import 'package:client/core/theme/theme_style.dart';
 import 'package:client/presentation/providers/themedataprovider.dart';
 import 'package:client/presentation/routes/routes.dart';
 import 'package:device_preview/device_preview.dart';
@@ -29,12 +30,14 @@ class MyApp extends ConsumerWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final themeProviderRef = ref.watch(themeProvider);
+    final themeModeRef = ref.watch(themeProvider);
     if (kDebugMode) {
       print('build');
     }
     return MaterialApp(
-        theme: themeProviderRef,
+        themeMode: themeModeRef,
+        theme: ThemeDataStyle.light, // Light theme
+        darkTheme: ThemeDataStyle.dark,
         debugShowCheckedModeBanner: false,
         initialRoute: Routesname.signIn,
         onGenerateRoute: AppRoutes.generateRoute);

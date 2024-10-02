@@ -5,8 +5,8 @@ class ThemeDataStyle {
     useMaterial3: true,
     brightness: Brightness.light,
     colorScheme: ColorScheme.light(
-      surface: Colors.white,
-      onSurface: Colors.grey.shade300,
+      surface: Colors.indigo.shade50,
+      onSurface: Colors.white,
       primary: Colors.black,
       secondary: Colors.deepPurple.shade300,
     ),

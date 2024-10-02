@@ -1,14 +1,11 @@
-import 'package:client/presentation/providers/themedataprovider.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:provider/provider.dart';
 
 class ProfileScreen extends ConsumerWidget {
   const ProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final themeData = ref.watch(themeProvider);
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -21,20 +18,6 @@ class ProfileScreen extends ConsumerWidget {
                   color: Colors.grey.shade700, fontWeight: FontWeight.w500),
             ),
             centerTitle: true,
-            actions: [
-              IconButton(
-                onPressed: () {
-                  ref.read(themeProvider.notifier).changeTheme();
-                },
-                icon: const Icon(
-                  ThemeData.light != null ? Icons.sunny : Icons.nightlight,
-                  color: Colors.grey,
-                ),
-              ),
-              const SizedBox(
-                width: 7,
-              )
-            ],
           ),
           SliverToBoxAdapter(
               child: SingleChildScrollView(

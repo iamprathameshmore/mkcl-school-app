@@ -14,7 +14,6 @@ class CustombtnWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isLoading = true;
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Material(
@@ -30,21 +29,14 @@ class CustombtnWidget extends StatelessWidget {
             width: double.infinity,
             alignment: Alignment.center,
             decoration: BoxDecoration(borderRadius: BorderRadius.circular(5)),
-            child: isLoading
-                ? const Padding(
-                    padding: EdgeInsets.all(8),
-                    child: CircularProgressIndicator(
-                      color: Colors.white,
-                    ),
-                  )
-                : Text(
-                    buttonText,
-                    style: const TextStyle(
-                      fontSize: 17,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
+            child: Text(
+              buttonText,
+              style: const TextStyle(
+                fontSize: 17,
+                color: Colors.white,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
           ),
         ),
       ),

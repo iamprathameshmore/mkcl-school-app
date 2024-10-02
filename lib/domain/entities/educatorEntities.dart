@@ -1,19 +1,19 @@
 class Educatorentities {
-  final name;
-  final email;
-  final isVerified;
-  final isLoggedIn;
-  final password;
-  final otp;
-  final phoneNumber;
+  final String name;
+  final String email;
+  final bool isVerified;
+  final bool isLoggedIn;
+  final String password;
+  final int otp;
+  final int phoneNumber;
 
   Educatorentities({
-    this.isVerified,
-    this.isLoggedIn,
-    this.password,
-    this.otp,
-    this.phoneNumber,
-    this.name,
-    this.email,
+    required this.isVerified,
+    required this.isLoggedIn,
+    required this.password,
+    required this.otp,
+    required this.phoneNumber,
+    required this.name,
+    required this.email,
   });
 }

@@ -1,20 +1,14 @@
-import 'package:client/core/theme/theme_style.dart';
-import 'package:client/presentation/providers/themedataprovider.dart';
 import 'package:client/presentation/screens/home/homeScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:form_validator/form_validator.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:provider/provider.dart';
 
 class SignUpScreen extends ConsumerWidget {
   const SignUpScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // final themeProvider = Provider.of<ThemeProvider>(context);
-    final themeData = ref.watch(themeProvider);
-
     final nameController = TextEditingController();
     final emailController = TextEditingController();
     final passwordController = TextEditingController();
@@ -30,20 +24,6 @@ class SignUpScreen extends ConsumerWidget {
               color: Colors.indigo.shade500, fontWeight: FontWeight.w500),
         ),
         centerTitle: true,
-        actions: [
-          IconButton(
-            onPressed: () {
-              ref.read(themeProvider.notifier).changeTheme();
-            },
-            icon: const Icon(
-              ThemeData.light != null ? Icons.sunny : Icons.nightlight,
-              color: Colors.grey,
-            ),
-          ),
-          const SizedBox(
-            width: 10,
-          )
-        ],
       ),
       body: SingleChildScrollView(
         child: Column(

@@ -1,12 +1,14 @@
 import 'package:client/presentation/providers/signInProviders.dart';
-import 'package:client/presentation/providers/themedataprovider.dart';
 import 'package:client/presentation/screens/auth/signUpScreen.dart';
 
 import 'package:client/presentation/widgets/common/focusChangeUtils.dart';
-import 'package:client/presentation/widgets/common/customBtn.Widget.dart';
+import 'package:client/presentation/widgets/common/buttons/customBtn.Widget.dart';
+import 'package:client/presentation/widgets/screens/loadingScreen.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:form_validator/form_validator.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class SignInScreen extends ConsumerWidget {
@@ -14,9 +16,9 @@ class SignInScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref.watch(themeProvider);
     final emailController = TextEditingController();
     final passwordController = TextEditingController();
+    final siginProvider = ref.watch(userDataProvider);
 
     FocusNode emailFocusNode = FocusNode();
     FocusNode passwordFocusNode = FocusNode();
@@ -25,35 +27,16 @@ class SignInScreen extends ConsumerWidget {
 
     ValueNotifier<bool> passwordText = ValueNotifier<bool>(false);
 
-    final asyncUserData = ref.watch(userDataProvider);
-
-    // asyncUserData.when(data: , error: , loading: , );
-
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.surface,
-        surfaceTintColor: Theme.of(context).colorScheme.surface,
-        title: Text(
-          'Sign In',
-          style: TextStyle(
-              color: Colors.indigo.shade500, fontWeight: FontWeight.w500),
-        ),
-        centerTitle: true,
-        actions: [
-          IconButton(
-            onPressed: () {
-              ref.read(themeProvider.notifier).changeTheme();
-            },
-            icon: const Icon(
-              ThemeData.light != null ? Icons.sunny : Icons.nightlight,
-              color: Colors.grey,
-            ),
+          backgroundColor: Theme.of(context).colorScheme.surface,
+          surfaceTintColor: Theme.of(context).colorScheme.surface,
+          title: Text(
+            'Sign In',
+            style: GoogleFonts.frankRuhlLibre(
+                color: Colors.indigo.shade500, fontWeight: FontWeight.w500),
           ),
-          SizedBox(
-            width: 10,
-          )
-        ],
-      ),
+          centerTitle: true),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -70,15 +53,15 @@ class SignInScreen extends ConsumerWidget {
               children: [
                 Text(
                   'Mkcl School',
-                  style: TextStyle(
+                  style: GoogleFonts.frankRuhlLibre(
                     color: Colors.indigo.shade600,
                     fontWeight: FontWeight.w500,
                     fontSize: 30,
                   ),
                 ),
-                const Text(
+                Text(
                   'Creating a Knowledge Lit World',
-                  style: TextStyle(color: Colors.grey),
+                  style: GoogleFonts.frankRuhlLibre(color: Colors.grey),
                 )
               ],
             ),
@@ -192,53 +175,6 @@ class SignInScreen extends ConsumerWidget {
                         ),
                       );
                     })),
-            // Padding(
-            //   padding: const EdgeInsets.all(8.0),
-            //   child: Material(
-            //     color: Colors.indigo,
-            //     shape: RoundedRectangleBorder(
-            //         borderRadius: BorderRadius.circular(5.0),
-            //         side: const BorderSide(color: Colors.indigo)),
-            //     child: InkWell(
-            //       onTap: isLoading
-            //           ? null
-            //           : () {
-            //               // Validate returns true if the form is valid, or false otherwise.
-            //               if (_formKey.currentState!.validate()) {
-            //                 // If the form is valid, display a snackbar. In the real world,
-            //                 // you'd often call a server or save the information in a database.
-            //                 ScaffoldMessenger.of(context).showSnackBar(
-            //                   const SnackBar(content: Text('Processing Data')),
-            //                 );
-            //               }
-            //             },
-            //       child: isLoading
-            //           ? SizedBox(
-            //               width: 20,
-            //               height: 20,
-            //               child: CircularProgressIndicator(
-            //                 color: Colors.white,
-            //                 strokeWidth: 2,
-            //               ),
-            //             )
-            //           : Container(
-            //               height: 50,
-            //               width: double.infinity,
-            //               alignment: Alignment.center,
-            //               decoration: BoxDecoration(
-            //                   // color: Colors.indigo.shade500
-            //                   borderRadius: BorderRadius.circular(5)),
-            //               child: const Text(
-            //                 'SIGN IN',
-            //                 style: TextStyle(
-            //                     fontSize: 17,
-            //                     color: Colors.white,
-            //                     fontWeight: FontWeight.w500),
-            //               ),
-            //             ),
-            //     ),
-            //   ),
-            // ),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
@@ -264,7 +200,16 @@ class SignInScreen extends ConsumerWidget {
               buttonText: 'SIGN IN',
               isLoading: false,
               onTap: () {
-                print("print on CustomBtn");
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const Loadingwidget(
+                              msg: 'jellp',
+                            )));
+
+                if (kDebugMode) {
+                  print("print on CustomBtn");
+                }
               },
             ),
             Padding(

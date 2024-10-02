@@ -51,6 +51,7 @@ dependencies:
   http: ^1.2.2
   riverpod: ^2.5.1
   hooks_riverpod: ^2.5.2
+  google_fonts: ^6.2.1
  
   
   

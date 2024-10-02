@@ -1,15 +1,11 @@
-import 'package:client/core/theme/theme_style.dart';
-import 'package:client/presentation/providers/themedataprovider.dart';
 import 'package:client/presentation/screens/auth/signInScreen.dart';
 import 'package:client/presentation/screens/profile/instituteProfileScreen.dart';
 import 'package:client/presentation/screens/profile/profileScreen.dart';
 import 'package:client/presentation/screens/setting/settingScreen.dart';
-import 'package:riverpod/riverpod.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
 
 DateTime now = DateTime.now();
 
