@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:google_fonts/google_fonts.dart";
 
 class CustombtnWidget extends StatelessWidget {
   final VoidCallback? onTap;
@@ -31,10 +32,10 @@ class CustombtnWidget extends StatelessWidget {
             decoration: BoxDecoration(borderRadius: BorderRadius.circular(5)),
             child: Text(
               buttonText,
-              style: const TextStyle(
-                fontSize: 17,
+              style: GoogleFonts.syne(
+                fontSize: 20,
                 color: Colors.white,
-                fontWeight: FontWeight.w500,
+                fontWeight: FontWeight.w700,
               ),
             ),
           ),

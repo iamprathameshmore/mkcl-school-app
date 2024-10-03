@@ -35,12 +35,6 @@ class BatchesWidgets extends StatelessWidget {
                             color: Theme.of(context).colorScheme.primary),
                       ),
                     ),
-                    IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.more_vert_outlined,
-                          color: Theme.of(context).colorScheme.primary,
-                        ))
                   ],
                 ),
                 Row(

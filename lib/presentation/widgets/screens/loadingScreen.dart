@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class Loadingwidget extends StatelessWidget {
   final String msg;
@@ -14,9 +13,9 @@ class Loadingwidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              msg.isEmpty ? " " : msg,
-              style: const TextStyle(
-                  color: Colors.grey,
+              'Loading',
+              style: TextStyle(
+                  color: Theme.of(context).colorScheme.primary,
                   fontSize: 15,
                   fontWeight: FontWeight.w500),
             ),
@@ -36,12 +35,12 @@ class Loadingwidget extends StatelessWidget {
       ),
       bottomNavigationBar: Container(
         height: 50,
+        width: double.infinity,
         margin: const EdgeInsets.only(bottom: 30),
         alignment: Alignment.center,
-        child: Text(
+        child: const Text(
           "Made with 🐞 23bg",
-          style: GoogleFonts.silkscreen(
-              color: Colors.grey, fontSize: 15, fontWeight: FontWeight.w500),
+          style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold),
         ),
       ),
     );

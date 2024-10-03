@@ -52,6 +52,7 @@ dependencies:
   riverpod: ^2.5.1
   hooks_riverpod: ^2.5.2
   google_fonts: ^6.2.1
+  timeline_tile: ^2.0.0
  
   
   
@@ -84,7 +85,9 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/mkcl.png
-  #   - images/a_dot_ham.jpeg
+
+    #  Space Mono Font Family
+    - assets/font/SpaceMono-Regular.ttf
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

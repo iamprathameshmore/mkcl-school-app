@@ -21,11 +21,12 @@ class Personlistwidget extends StatelessWidget {
             children: [
               Text(
                 "Name : $Name",
-                style: TextStyle(color: Theme.of(context).colorScheme.primary),
+                style: TextStyle(
+                    color: Theme.of(context).colorScheme.primary, fontSize: 10),
               ),
               Text(
                 "Data : $Data",
-                style: const TextStyle(color: Colors.grey),
+                style: const TextStyle(color: Colors.grey, fontSize: 10),
               ),
             ],
           ),

@@ -1,3 +1,4 @@
+import 'package:client/presentation/screens/setting/settingScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -18,6 +19,17 @@ class ProfileScreen extends ConsumerWidget {
                   color: Colors.grey.shade700, fontWeight: FontWeight.w500),
             ),
             centerTitle: true,
+            actions: [
+              IconButton(
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const SettingScreen()));
+                  },
+                  icon: const Icon(Icons.settings_outlined)),
+              SizedBox(
+                width: 5,
+              )
+            ],
           ),
           SliverToBoxAdapter(
               child: SingleChildScrollView(

@@ -1,4 +1,5 @@
 import 'package:client/presentation/screens/batch/AttendanceScreen.dart';
+import 'package:client/presentation/screens/batch/batchHomeScreen.dart';
 import 'package:client/presentation/widgets/layouts/personListWidget.dart';
 import 'package:flutter/material.dart';
 
@@ -80,7 +81,7 @@ class _BatchState extends State<Batch> with SingleTickerProviderStateMixin {
       body: TabBarView(
         controller: _tabController,
         children: [
-          const Center(child: Text('Content of Tab 1')),
+          Batchhomescreen(),
           Expanded(
             child: Column(
               children: [

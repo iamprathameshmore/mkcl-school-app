@@ -186,8 +186,11 @@ class SignUpScreen extends ConsumerWidget {
                     side: const BorderSide(color: Colors.indigo)),
                 child: InkWell(
                   onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const HomeScreen()));
+                    Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(
+                          builder: (context) => const HomeScreen()),
+                      ModalRoute.withName('/'),
+                    );
                   },
                   child: Container(
                     height: 50,
