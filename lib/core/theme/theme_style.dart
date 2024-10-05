@@ -4,13 +4,14 @@ import 'package:google_fonts/google_fonts.dart';
 class ThemeDataStyle {
   static ThemeData light = ThemeData(
     textTheme: GoogleFonts.syneTextTheme(TextTheme(
-        titleLarge: TextStyle(
-          fontWeight: FontWeight.w700,
-          color: Colors.indigo.shade600,
-        ),
-        bodyLarge: TextStyle(fontWeight: FontWeight.w700, fontSize: 25),
-        bodyMedium: TextStyle(fontWeight: FontWeight.w700),
-        bodySmall: TextStyle(fontWeight: FontWeight.w700, fontSize: 15))),
+        // titleLarge: TextStyle(
+        //   fontWeight: FontWeight.w700,
+        //   color: Colors.indigo.shade600,
+        // ),
+        // bodyLarge: TextStyle(fontWeight: FontWeight.w700, fontSize: 25),
+        // bodyMedium: TextStyle(fontWeight: FontWeight.w700),
+        // bodySmall: TextStyle(fontWeight: FontWeight.w700, fontSize: 15)
+        )),
     useMaterial3: true,
     brightness: Brightness.light,
     colorScheme: ColorScheme.light(

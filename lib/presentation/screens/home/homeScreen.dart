@@ -1,5 +1,6 @@
 // ignore: file_names
 
+import 'package:client/data/database/sql_helper.dart';
 import 'package:client/presentation/screens/batch/addBatchScreen.dart';
 import 'package:client/presentation/screens/batch/batch.dart';
 import 'package:client/presentation/screens/profile/profileScreen.dart';
@@ -18,109 +19,99 @@ class HomeScreen extends ConsumerStatefulWidget {
 }
 
 class _HomeScreenState extends ConsumerState<HomeScreen> {
+  List<Map<String, dynamic>> alldata = [];
+  DataBaseSql? dbRef;
+
+  @override
+  void initState() {
+    super.initState();
+    dbRef = DataBaseSql.getInstance;
+    getBatches();
+  }
+
+  void getBatches() async {
+    alldata = await dbRef!.getAllData();
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            floating: true,
-            elevation: 0.5,
-            shadowColor: Theme.of(context).colorScheme.onSurface,
-            backgroundColor: Theme.of(context).colorScheme.surface,
-            surfaceTintColor: Theme.of(context).colorScheme.surface,
-            foregroundColor: Colors.grey.shade700,
-            title: Text.rich(TextSpan(
-                text: 'Mkcl',
-                style: const TextStyle(
-                    color: Colors.indigo,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 25),
-                children: [
-                  TextSpan(
-                      text: ' School',
-                      style: TextStyle(color: Colors.grey.shade700))
-                ])),
-            actions: [
-              // IconButton(
-              //     onPressed: () {},
-              //     icon: Icon(
-              //       CupertinoIcons.bell_fill,
-              //       size: 25,
-              //     )),
-              // const SizedBox(
-              //   width: 10,
-              // ),
-              GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const ProfileScreen()));
-                  },
-                  child: Container(
-                    height: 40,
-                    width: 40,
-                    decoration: BoxDecoration(
-                        color: Colors.indigo.shade600,
-                        borderRadius: BorderRadius.circular(50)),
-                    child: const Padding(
-                      padding: EdgeInsets.all(2.0),
-                      child: CircleAvatar(
-                        backgroundImage: NetworkImage(
-                            'https://avatars.githubusercontent.com/u/91453437?v=4'),
-                      ),
-                    ),
-                  )),
-              const SizedBox(
-                width: 10,
-              )
-            ],
-          ),
-          // SliverList(
-          //   delegate: SliverChildBuilderDelegate(
-          //     (BuildContext context, int index) {
-          //       return GestureDetector(
-          //         onTap: () {
-          //           // Handle the tap event here
-          //           Navigator.push(context,
-          //               MaterialPageRoute(builder: (context) => const Batch()));
-          //         },
-          //         child: BatchesWidgets(
-          //           name: list[index].name,
-          //           date: list[index].data,
-          //           time: list[index].time,
-          //           username: list[index].name,
-          //         ),
-          //       );
-          //     },
-          //     childCount: list.length,
-          //   ),
-          // ),
-
-          const SliverToBoxAdapter(
-            child: Padding(
-              padding: EdgeInsets.only(bottom: 10, top: 5),
-              child: SizedBox(
-                height: 30,
-                child: Text(
-                  textAlign: TextAlign.center,
-                  "Mkcl School © 2024",
-                  style: TextStyle(color: Colors.grey),
+      appBar: AppBar(
+        elevation: 0.5,
+        shadowColor: Theme.of(context).colorScheme.onSurface,
+        backgroundColor: Theme.of(context).colorScheme.surface,
+        surfaceTintColor: Theme.of(context).colorScheme.surface,
+        foregroundColor: Colors.grey.shade700,
+        title: Text.rich(TextSpan(
+            text: 'Mkcl',
+            style: const TextStyle(
+                color: Colors.indigo,
+                fontWeight: FontWeight.w500,
+                fontSize: 25),
+            children: [
+              TextSpan(
+                  text: ' School',
+                  style: TextStyle(color: Colors.grey.shade700))
+            ])),
+        actions: [
+          GestureDetector(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ProfileScreen()));
+              },
+              child: Container(
+                height: 40,
+                width: 40,
+                decoration: BoxDecoration(
+                    color: Colors.indigo.shade600,
+                    borderRadius: BorderRadius.circular(50)),
+                child: const Padding(
+                  padding: EdgeInsets.all(2.0),
+                  child: CircleAvatar(
+                    backgroundImage: NetworkImage(
+                        'https://avatars.githubusercontent.com/u/91453437?v=4'),
+                  ),
                 ),
-              ),
-            ),
-          ),
+              )),
+          const SizedBox(
+            width: 10,
+          )
         ],
       ),
-      floatingActionButton: FloatingActionButton(
+      body: alldata.isNotEmpty
+          ? ListView.builder(
+              itemCount: alldata.length,
+              itemBuilder: (_, index) {
+                return BatchesWidgets(
+                  title: '${alldata[index][DataBaseSql.COL_TITLE]}',
+                  desc: '${alldata[index][DataBaseSql.COL_DES]}',
+                  startDate: '${alldata[index][DataBaseSql.COL_START_DATE]}',
+                  endDate: '${alldata[index][DataBaseSql.COL_END_DATE]}',
+                );
+              })
+          : const Center(
+              child: Text('no batch found please add the batch'),
+            ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           Navigator.of(context)
               .push(MaterialPageRoute(builder: (context) => AddBatchScreen()));
+          // dbRef!.addBatch(
+          //     title: 'batch', desc: 'des', startAt: '01', endAt: '02');
+          getBatches();
         },
         backgroundColor: Colors.indigo,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
-        child: const Center(child: Icon(Icons.add)),
+        icon: const Center(
+            child: Icon(
+          Icons.add,
+          size: 20,
+        )),
+        label: const Text('Add Batch'),
       ),
     );
   }

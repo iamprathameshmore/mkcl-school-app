@@ -1,4 +1,5 @@
 import 'package:client/core/theme/theme_style.dart';
+import 'package:client/data/database/sql_helper.dart';
 import 'package:client/presentation/providers/themedataprovider.dart';
 import 'package:client/presentation/routes/routes.dart';
 import 'package:device_preview/device_preview.dart';
@@ -39,7 +40,7 @@ class MyApp extends ConsumerWidget {
         theme: ThemeDataStyle.light, // Light theme
         darkTheme: ThemeDataStyle.dark,
         debugShowCheckedModeBanner: false,
-        initialRoute: Routesname.signIn,
+        initialRoute: Routesname.home,
         onGenerateRoute: AppRoutes.generateRoute);
   }
 }

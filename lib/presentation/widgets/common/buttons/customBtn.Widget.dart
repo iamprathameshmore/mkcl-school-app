@@ -2,15 +2,15 @@ import "package:flutter/material.dart";
 import "package:google_fonts/google_fonts.dart";
 
 class CustombtnWidget extends StatelessWidget {
-  final VoidCallback? onTap;
+  final VoidCallback onTap;
   final String buttonText;
-  final bool isLoading;
+  final isLoading; // `isLoading` is no longer a constant
 
   const CustombtnWidget({
     super.key,
     required this.onTap,
     required this.buttonText,
-    this.isLoading = false,
+    this.isLoading, // Allow external control of loading state
   });
 
   @override
@@ -24,7 +24,7 @@ class CustombtnWidget extends StatelessWidget {
           side: const BorderSide(color: Colors.indigo),
         ),
         child: InkWell(
-          onTap: isLoading ? null : onTap,
+          onTap: onTap, // Disable button when loading
           child: Container(
             height: 50,
             width: double.infinity,
