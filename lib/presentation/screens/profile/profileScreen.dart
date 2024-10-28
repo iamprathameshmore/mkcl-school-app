@@ -77,7 +77,7 @@ class ProfileScreen extends ConsumerWidget {
                   const SizedBox(height: 4),
 
                   // Institute Address
-                  Center(
+                  const Center(
                     child: Text(
                       '123 Institute Lane, City, State, ZIP',
                       style: TextStyle(

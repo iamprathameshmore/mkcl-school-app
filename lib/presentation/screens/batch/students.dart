@@ -19,7 +19,10 @@ class _StudentsScreenState extends State<StudentsScreen> {
                 child: ListView.builder(
                     itemCount: 100,
                     itemBuilder: (BuildContext context, int index) {
-                      return const Personlistwidget();
+                      return const Personlistwidget(
+                        name: '',
+                        data: '',
+                      );
                     })),
           ],
         ),
@@ -29,8 +32,6 @@ class _StudentsScreenState extends State<StudentsScreen> {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
         onPressed: () {
           // Action when button is pressed
-
-          print("FAB Pressed");
         },
         label: Text(
           'Add Students',

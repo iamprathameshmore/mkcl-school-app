@@ -1,12 +1,11 @@
-import 'package:another_flushbar/flushbar.dart';
 import 'package:client/data/api/authApi.dart';
 import 'package:client/data/model/userModel.dart';
 
-import 'package:client/presentation/screens/auth/signUpScreen.dart';
+import 'package:client/presentation/screens/auth/signup/signUpScreen.dart';
 import 'package:client/presentation/screens/home/homeScreen.dart';
 import 'package:client/presentation/widgets/common/focusChangeUtils.dart';
 import 'package:client/presentation/widgets/common/buttons/customBtn.Widget.dart';
-import 'package:client/presentation/widgets/screens/loadingScreen.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:form_validator/form_validator.dart';
@@ -15,6 +14,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class SignInScreen extends ConsumerWidget {
+  const SignInScreen({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final ApiService apiService = ApiService();
@@ -202,11 +203,10 @@ class SignInScreen extends ConsumerWidget {
 
                     try {
                       final res = await apiService.signInUser(data);
-                      print(res);
 
                       if (res.statusCode == 200) {
                         Navigator.pushReplacement(
-                            context,
+                            (context),
                             MaterialPageRoute(
                                 builder: (context) => const HomeScreen()));
                       }

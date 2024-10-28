@@ -2,7 +2,6 @@ import 'package:client/data/database/sql_helper.dart';
 import 'package:client/providers/batch/batch_Provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
@@ -33,39 +32,25 @@ class _AddBatchScreenState extends ConsumerState<AddBatchScreen> {
     dbRef = DataBaseSql.getInstance;
   }
 
-  Future<void> pickFile() async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles(
-      type: FileType.custom,
-      allowedExtensions: ['csv', 'xlsx'],
-    );
-
-    if (result != null) {
-      PlatformFile file = result.files.first;
-      print('Picked file: ${file.name}');
-    } else {
-      // User canceled the picker
-    }
-  }
-
   void showAddStudentDialog() {
     showDialog(
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text('Add Student'),
+          title: const Text('Add Student'),
           content: TextField(
             controller: studentName,
-            decoration: InputDecoration(hintText: 'Enter student name'),
+            decoration: const InputDecoration(hintText: 'Enter student name'),
           ),
           actions: [
             TextButton(
               onPressed: () {
                 // Handle adding the student
-                print('Added student: ${studentName.text}');
+                // print('Added student: ${studentName.text}');
                 studentName.clear(); // Clear the input after adding
                 Navigator.of(context).pop();
               },
-              child: Text('Add'),
+              child: const Text('Add'),
             ),
           ],
         );
@@ -95,10 +80,10 @@ class _AddBatchScreenState extends ConsumerState<AddBatchScreen> {
         actions: [
           IconButton(
               onPressed: () async {
-                print([
-                  title.text,
-                  desc.text,
-                ]);
+                // print([
+                //   title.text,
+                //   desc.text,
+                // ]);
                 if (title.text.isNotEmpty && desc.text.isNotEmpty) {
                   await allbatch.addBatch(
                       titlenew: title.text,
@@ -134,7 +119,7 @@ class _AddBatchScreenState extends ConsumerState<AddBatchScreen> {
               maxLines: 3,
               context: context,
             ),
-            Divider(),
+            const Divider(),
             const SizedBox(height: 10),
             Row(
               children: [
@@ -165,7 +150,7 @@ class _AddBatchScreenState extends ConsumerState<AddBatchScreen> {
                     },
                   ),
                 ),
-                SizedBox(width: 10),
+                const SizedBox(width: 10),
                 Expanded(
                   child: GestureDetector(
                     child: buildDateTimePicker(
@@ -226,7 +211,7 @@ class _AddBatchScreenState extends ConsumerState<AddBatchScreen> {
                     },
                   ),
                 ),
-                SizedBox(width: 10),
+                const SizedBox(width: 10),
                 Expanded(
                   child: GestureDetector(
                     child: buildDateTimePicker(
@@ -258,14 +243,14 @@ class _AddBatchScreenState extends ConsumerState<AddBatchScreen> {
               ],
             ),
             const SizedBox(height: 10),
-            Divider(),
+            const Divider(),
             const SizedBox(height: 10),
             // Weekday selection
             Text('Select Weekdays',
                 style: TextStyle(
                     fontSize: 18,
                     color: Theme.of(context).colorScheme.primary)),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Wrap(
@@ -335,8 +320,8 @@ class _AddBatchScreenState extends ConsumerState<AddBatchScreen> {
     required String label,
   }) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 12),
-      margin: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+      padding: const EdgeInsets.symmetric(horizontal: 12),
+      margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.onSurface,
         border: Border.all(color: Colors.white),
@@ -346,10 +331,10 @@ class _AddBatchScreenState extends ConsumerState<AddBatchScreen> {
       child: Row(
         children: [
           Icon(icon),
-          SizedBox(width: 15),
+          const SizedBox(width: 15),
           Text(
             label,
-            style: TextStyle(color: Colors.grey, fontSize: 20),
+            style: const TextStyle(color: Colors.grey, fontSize: 20),
           ),
         ],
       ),

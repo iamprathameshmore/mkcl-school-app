@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class Personlistwidget extends StatelessWidget {
-  final Name;
-  final Data;
-  const Personlistwidget({super.key, this.Name, this.Data});
+  final String name;
+  final String data;
+  const Personlistwidget({super.key, required this.name, required this.data});
 
   @override
   Widget build(BuildContext context) {
@@ -20,12 +20,12 @@ class Personlistwidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Name : $Name",
+                "name : $name",
                 style: TextStyle(
                     color: Theme.of(context).colorScheme.primary, fontSize: 10),
               ),
               Text(
-                "Data : $Data",
+                "data : $data",
                 style: const TextStyle(color: Colors.grey, fontSize: 10),
               ),
             ],

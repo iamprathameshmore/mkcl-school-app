@@ -8,8 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:form_validator/form_validator.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../widgets/screens/loadingScreen.dart';
-
 class SignUpScreen extends ConsumerWidget {
   const SignUpScreen({super.key});
 
@@ -241,17 +239,15 @@ class SignUpScreen extends ConsumerWidget {
                             email: emailController.text,
                             phoneNumber: phoneNumberController.text,
                             password: passwordController.text);
-                        print(data);
 
                         try {
                           final res = await apiService.signUpUser(data);
-                          print(res);
 
                           if (res.statusCode == 200) {
                             Navigator.pushAndRemoveUntil(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => HomeScreen()),
+                                  builder: (context) => const HomeScreen()),
                               ModalRoute.withName('/'),
                             );
                           } else if (res.statusCode == 204) {
@@ -259,7 +255,7 @@ class SignUpScreen extends ConsumerWidget {
                               SnackBar(
                                   content: Text(
                                 'Error: ${e.toString()}',
-                                style: TextStyle(color: Colors.red),
+                                style: const TextStyle(color: Colors.red),
                               )), // Catch and display any error
                             );
                           } else if (res.statusCode == 204) {
@@ -267,7 +263,7 @@ class SignUpScreen extends ConsumerWidget {
                               SnackBar(
                                   content: Text(
                                 'Error: ${e.toString()}',
-                                style: TextStyle(color: Colors.red),
+                                style: const TextStyle(color: Colors.red),
                               )), // Catch and display any error
                             );
                           }
@@ -276,7 +272,7 @@ class SignUpScreen extends ConsumerWidget {
                             SnackBar(
                                 content: Text(
                               'Error: ${e.toString()}',
-                              style: TextStyle(color: Colors.red),
+                              style: const TextStyle(color: Colors.red),
                             )), // Catch and display any error
                           );
                         }

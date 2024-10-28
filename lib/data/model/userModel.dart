@@ -14,11 +14,11 @@ class userModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
-    data['phoneNumber'] = this.phoneNumber;
-    data['email'] = this.email;
-    data['password'] = this.password;
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['name'] = name;
+    data['phoneNumber'] = phoneNumber;
+    data['email'] = email;
+    data['password'] = password;
     return data;
   }
 }

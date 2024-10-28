@@ -82,7 +82,7 @@ class _BatchState extends State<Batch> with SingleTickerProviderStateMixin {
       ),
       body: TabBarView(
         controller: _tabController,
-        children: [const BatchHomeScreen(), const StudentsScreen()],
+        children: const [BatchHomeScreen(), StudentsScreen()],
       ),
     );
   }

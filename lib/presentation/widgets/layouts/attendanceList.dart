@@ -32,7 +32,6 @@ class _AttendancelistState extends State<Attendancelist> {
                   setState(() {
                     isChecked = value ?? false; // Update the state
                   });
-                  print(value);
                 },
               )
             ],

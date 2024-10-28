@@ -1,67 +1,3 @@
-// import 'package:flutter/material.dart';
-
-// class BatchesWidgets extends StatelessWidget {
-//   final name;
-//   final username;
-//   final date;
-//   final time;
-//   const BatchesWidgets(
-//       {super.key, this.name, this.username, this.date, this.time});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Padding(
-//       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 15),
-//       child: Container(
-//           height: 100,
-//           width: double.infinity,
-//           decoration: BoxDecoration(
-//             borderRadius: BorderRadius.circular(5),
-//             border: Border.all(
-//                 width: 1, color: Theme.of(context).colorScheme.surface),
-//             color: Theme.of(context).colorScheme.onSurface,
-//           ),
-//           child: Column(
-//               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//               children: [
-//                 Row(
-//                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                   children: [
-//                     Padding(
-//                       padding: const EdgeInsets.all(8.0),
-//                       child: Text(
-//                         name,
-//                         style: TextStyle(
-//                             color: Theme.of(context).colorScheme.primary),
-//                       ),
-//                     ),
-//                   ],
-//                 ),
-//                 Row(
-//                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                   children: [
-//                     Padding(
-//                       padding: const EdgeInsets.all(8.0),
-//                       child: Text(
-//                         username,
-//                         style: TextStyle(
-//                             color: Theme.of(context).colorScheme.primary),
-//                       ),
-//                     ),
-//                     Padding(
-//                       padding: const EdgeInsets.all(8.0),
-//                       child: Text(
-//                         '$date - $time',
-//                         style: TextStyle(
-//                             color: Theme.of(context).colorScheme.primary),
-//                       ),
-//                     ),
-//                   ],
-//                 )
-//               ])),
-//     );
-//   }
-// }
 import 'package:flutter/material.dart';
 
 class BatchesWidgets extends StatelessWidget {
@@ -121,7 +57,7 @@ class BatchesWidgets extends StatelessWidget {
               // Description
               Text(
                 desc ?? 'No description available.',
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 14,
                   color: Colors.grey,
                 ),
@@ -139,7 +75,7 @@ class BatchesWidgets extends StatelessWidget {
                     children: [
                       Text(
                         'Start: $startDate - $startTime',
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 13,
                           color: Colors.grey,
                         ),
@@ -147,7 +83,7 @@ class BatchesWidgets extends StatelessWidget {
                       const SizedBox(height: 5),
                       Text(
                         'End: $endDate - $endTime',
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 13,
                           color: Colors.grey,
                         ),
@@ -157,32 +93,6 @@ class BatchesWidgets extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 10),
-
-              // More options or actions
-              // Align(
-              //   alignment: Alignment.bottomRight,
-              //   child: TextButton(
-              //     onPressed: () {
-              //       print("start Attendance");
-              //     },
-              //     style: TextButton.styleFrom(
-              //       padding: const EdgeInsets.symmetric(
-              //         vertical: 8,
-              //         horizontal: 16,
-              //       ),
-              //       backgroundColor: Colors.indigo.shade600,
-              //       shape: RoundedRectangleBorder(
-              //         borderRadius: BorderRadius.circular(20),
-              //       ),
-              //     ),
-              //     child: Text(
-              //       'Start Attendance',
-              //       style: TextStyle(
-              //         color: Colors.white,
-              //       ),
-              //     ),
-              //   ),
-              // ),
             ],
           ),
         ),

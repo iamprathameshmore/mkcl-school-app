@@ -1,17 +1,11 @@
-// ignore: file_names
-
-import 'package:client/data/database/sql_helper.dart';
 import 'package:client/presentation/screens/batch/addBatchScreen.dart';
 import 'package:client/presentation/screens/batch/batch.dart';
 import 'package:client/presentation/screens/profile/profileScreen.dart';
-
 import 'package:client/presentation/widgets/layouts/batchesWidget.dart';
 import 'package:client/providers/batch/batch_Provider.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:path/path.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
@@ -19,7 +13,6 @@ class HomeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final batchState = ref.watch(batchProvider);
-    final batchNotifier = ref.read(batchProvider.notifier);
 
     return Scaffold(
       appBar: AppBar(
@@ -79,7 +72,7 @@ class HomeScreen extends ConsumerWidget {
               itemBuilder: (context, index) {
                 return InkWell(
                   onDoubleTap: () {
-                    print('itemId:${batchState.batches[index]}');
+                    // print('itemId:${batchState.batches[index]}');
                     Navigator.push(
                       context,
                       MaterialPageRoute(

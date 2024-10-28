@@ -11,14 +11,14 @@ class DataBaseSql {
 
   Database? localDB;
 
-  static final String TABLE_NAME = 'Batch';
-  static final String COL_SNO = 's_no';
-  static final String COL_TITLE = 'title';
-  static final String COL_DES = 'desc';
-  static final String COL_START_DATE = 'start_date';
-  static final String COL_END_DATE = 'end_date';
-  static final String COL_START_TIME = 'start_time';
-  static final String COL_END_TIME = 'end_time';
+  static const String TABLE_NAME = 'Batch';
+  static const String COL_SNO = 's_no';
+  static const String COL_TITLE = 'title';
+  static const String COL_DES = 'desc';
+  static const String COL_START_DATE = 'start_date';
+  static const String COL_END_DATE = 'end_date';
+  static const String COL_START_TIME = 'start_time';
+  static const String COL_END_TIME = 'end_time';
 
   Future<Database> getDB() async {
     if (localDB != null) {

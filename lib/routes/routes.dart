@@ -1,8 +1,8 @@
-import 'package:client/presentation/screens/auth/forgetPasswordScreen.dart';
-import 'package:client/presentation/screens/auth/newPasswordScreen.dart';
+import 'package:client/presentation/screens/auth/forget_password/forgetPasswordScreen.dart';
+import 'package:client/presentation/screens/auth/forget_password/newPasswordScreen.dart';
 
-import 'package:client/presentation/screens/auth/signInScreen.dart';
-import 'package:client/presentation/screens/auth/signUpScreen.dart';
+import 'package:client/presentation/screens/auth/signin/signInScreen.dart';
+import 'package:client/presentation/screens/auth/signup/signUpScreen.dart';
 import 'package:client/presentation/screens/batch/addBatchScreen.dart';
 import 'package:client/presentation/screens/batch/batch.dart';
 import 'package:client/presentation/screens/home/homeScreen.dart';
@@ -17,7 +17,7 @@ class AppRoutes {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case Routesname.signIn:
-        return MaterialPageRoute(builder: (context) => SignInScreen());
+        return MaterialPageRoute(builder: (context) => const SignInScreen());
 
       case Routesname.signUp:
         return MaterialPageRoute(builder: (context) => const SignUpScreen());
@@ -31,7 +31,7 @@ class AppRoutes {
             builder: (context) => const NewPasswordScreen());
 
       case Routesname.home:
-        return MaterialPageRoute(builder: (context) => HomeScreen());
+        return MaterialPageRoute(builder: (context) => const HomeScreen());
 
       case Routesname.profile:
         return MaterialPageRoute(builder: (context) => const ProfileScreen());
@@ -41,9 +41,6 @@ class AppRoutes {
 
       case Routesname.addBatch:
         return MaterialPageRoute(builder: (context) => const AddBatchScreen());
-
-      // case Routesname.home:
-      //   return MaterialPageRoute(builder: (context) => SignUpScreen());
 
       default:
         return MaterialPageRoute(builder: (_) {
