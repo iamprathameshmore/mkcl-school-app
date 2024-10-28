@@ -8,7 +8,7 @@ import 'package:client/presentation/screens/batch/batch.dart';
 import 'package:client/presentation/screens/home/homeScreen.dart';
 
 import 'package:client/presentation/screens/profile/profileScreen.dart';
-import 'package:client/presentation/screens/setting/settingScreen.dart';
+
 import 'package:flutter/material.dart';
 
 import 'routesName.dart';
@@ -41,9 +41,6 @@ class AppRoutes {
 
       case Routesname.addBatch:
         return MaterialPageRoute(builder: (context) => const AddBatchScreen());
-
-      case Routesname.setting:
-        return MaterialPageRoute(builder: (context) => const SettingScreen());
 
       // case Routesname.home:
       //   return MaterialPageRoute(builder: (context) => SignUpScreen());

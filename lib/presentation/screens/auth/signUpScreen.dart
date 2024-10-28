@@ -7,7 +7,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:form_validator/form_validator.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:form_validator/form_validator.dart';
 
 import '../../widgets/screens/loadingScreen.dart';
 
@@ -22,7 +21,7 @@ class SignUpScreen extends ConsumerWidget {
     final passwordController = TextEditingController();
     ValueNotifier<bool> passwordText = ValueNotifier<bool>(true);
 
-    GlobalKey<FormState> _form = GlobalKey<FormState>();
+    GlobalKey<FormState> form = GlobalKey<FormState>();
     final ApiService apiService = ApiService();
 
     return Scaffold(
@@ -37,7 +36,7 @@ class SignUpScreen extends ConsumerWidget {
         centerTitle: true,
       ),
       body: Form(
-        key: _form,
+        key: form,
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -236,7 +235,7 @@ class SignUpScreen extends ConsumerWidget {
                       side: const BorderSide(color: Colors.indigo)),
                   child: InkWell(
                     onTap: () async {
-                      if (_form.currentState?.validate() == true) {
+                      if (form.currentState?.validate() == true) {
                         userModel data = userModel(
                             name: nameController.text,
                             email: emailController.text,

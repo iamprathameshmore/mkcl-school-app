@@ -8,7 +8,6 @@ import 'package:client/presentation/widgets/common/focusChangeUtils.dart';
 import 'package:client/presentation/widgets/common/buttons/customBtn.Widget.dart';
 import 'package:client/presentation/widgets/screens/loadingScreen.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:form_validator/form_validator.dart';
 
@@ -62,7 +61,7 @@ class SignInScreen extends ConsumerWidget {
                       fontSize: 30,
                     ),
                   ),
-                  Text(
+                  const Text(
                     'Creating a Knowledge Lit World',
                     style: TextStyle(color: Colors.grey),
                   )
@@ -116,7 +115,7 @@ class SignInScreen extends ConsumerWidget {
               //   name: "Email",
               // ),
               Padding(
-                padding: EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(8.0),
                 child: ValueListenableBuilder(
                     valueListenable: passwordText,
                     builder: (BuildContext context, value, child) {
@@ -209,14 +208,14 @@ class SignInScreen extends ConsumerWidget {
                         Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => HomeScreen()));
+                                builder: (context) => const HomeScreen()));
                       }
                     } catch (e) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                             content: Text(
                           'Error: ${e.toString()}',
-                          style: TextStyle(color: Colors.red),
+                          style: const TextStyle(color: Colors.red),
                         )), // Catch and display any error
                       );
                     }
@@ -252,16 +251,15 @@ class SignInScreen extends ConsumerWidget {
                     ],
                   )),
 
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 child: SizedBox(
                   height: 50,
                   child: Text.rich(
                     style: TextStyle(
                         color: Colors.grey, fontWeight: FontWeight.w700),
                     textAlign: TextAlign.center,
-                    const TextSpan(
+                    TextSpan(
                         text: 'By Siginin You Accepts our ',
                         // style: TextStyle(color: Theme.of(context).colorScheme.primary),
                         children: [

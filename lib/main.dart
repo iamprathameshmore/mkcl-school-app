@@ -1,5 +1,4 @@
 import 'package:client/core/theme/theme_style.dart';
-import 'package:client/exp.dart';
 
 import 'package:client/presentation/routes/routes.dart';
 import 'package:client/providers/themedataprovider.dart';
@@ -37,13 +36,13 @@ class MyApp extends ConsumerWidget {
       print('build');
     }
     return MaterialApp(
-      themeMode: themeModeRef,
-      theme: ThemeDataStyle.light, // Light theme
-      darkTheme: ThemeDataStyle.dark,
-      debugShowCheckedModeBanner: false,
-      initialRoute: Routesname.home,
-      onGenerateRoute: AppRoutes.generateRoute
-      // home: ScrollableStudentListScreen(),
-    );
+        themeMode: themeModeRef,
+        theme: ThemeDataStyle.light, // Light theme
+        darkTheme: ThemeDataStyle.dark,
+        debugShowCheckedModeBanner: false,
+        initialRoute: Routesname.home,
+        onGenerateRoute: AppRoutes.generateRoute
+        // home: ScrollableStudentListScreen(),
+        );
   }
 }

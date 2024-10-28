@@ -1,7 +1,5 @@
-import 'package:client/presentation/screens/batch/AttendanceScreen.dart';
 import 'package:client/presentation/screens/batch/batchHomeScreen.dart';
 import 'package:client/presentation/screens/batch/students.dart';
-import 'package:client/presentation/widgets/layouts/personListWidget.dart';
 import 'package:flutter/material.dart';
 
 class Batch extends StatefulWidget {
@@ -35,7 +33,8 @@ class _BatchState extends State<Batch> with SingleTickerProviderStateMixin {
         foregroundColor: Colors.grey,
         title: Text(
           data['title'],
-          style: TextStyle(color: Colors.indigo, fontWeight: FontWeight.w500),
+          style: const TextStyle(
+              color: Colors.indigo, fontWeight: FontWeight.w500),
         ),
         centerTitle: true,
         bottom: TabBar(
@@ -83,12 +82,7 @@ class _BatchState extends State<Batch> with SingleTickerProviderStateMixin {
       ),
       body: TabBarView(
         controller: _tabController,
-        children: [
-          BatchHomeScreen(
-            item: data,
-          ),
-          StudentsScreen()
-        ],
+        children: [const BatchHomeScreen(), const StudentsScreen()],
       ),
     );
   }

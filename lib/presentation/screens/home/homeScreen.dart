@@ -56,8 +56,8 @@ class HomeScreen extends ConsumerWidget {
                 child: const Padding(
                   padding: EdgeInsets.all(2.0),
                   child: CircleAvatar(
-                    backgroundImage: NetworkImage(
-                        'https://avatars.githubusercontent.com/u/91453437?v=4'),
+                    backgroundColor: Colors.indigo,
+                    child: Icon(Icons.person),
                   ),
                 ),
               )),
