@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:client/data/api/authApi.dart';
-import 'package:client/data/model/userModel.dart';
+import 'package:client/data/model/UserModel.dart';
 import 'package:client/presentation/screens/home/homeScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -234,7 +234,7 @@ class SignUpScreen extends ConsumerWidget {
                   child: InkWell(
                     onTap: () async {
                       if (form.currentState?.validate() == true) {
-                        userModel data = userModel(
+                        UserModel data = UserModel(
                             name: nameController.text,
                             email: emailController.text,
                             phoneNumber: phoneNumberController.text,

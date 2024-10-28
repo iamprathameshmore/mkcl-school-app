@@ -1,4 +1,4 @@
-import 'package:client/data/model/userModel.dart';
+import 'package:client/data/model/UserModel.dart';
 import 'package:dio/dio.dart';
 
 class ApiService {
@@ -16,7 +16,7 @@ class ApiService {
     };
   }
 
-  Future<dynamic> signInUser(userModel data) async {
+  Future<dynamic> signInUser(UserModel data) async {
     try {
       // Send POST request
       Response response = await _dio.post('/sign-in', data: data);
@@ -27,7 +27,7 @@ class ApiService {
     }
   }
 
-  Future<dynamic> signUpUser(userModel data) async {
+  Future<dynamic> signUpUser(UserModel data) async {
     try {
       // Send POST request
       Response response = await _dio.post('/sign-up', data: data);

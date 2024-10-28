@@ -1,5 +1,5 @@
 import 'package:client/data/api/authApi.dart';
-import 'package:client/data/model/userModel.dart';
+import 'package:client/data/model/UserModel.dart';
 
 import 'package:client/presentation/screens/auth/signup/signUpScreen.dart';
 import 'package:client/presentation/screens/home/homeScreen.dart';
@@ -197,7 +197,7 @@ class SignInScreen extends ConsumerWidget {
                 buttonText: 'Sign In',
                 onTap: () async {
                   if (formKey.currentState?.validate() == true) {
-                    userModel data = userModel(
+                    UserModel data = UserModel(
                         email: emailController.text,
                         password: passwordController.text);
 

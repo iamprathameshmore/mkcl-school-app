@@ -1,7 +1,7 @@
 import 'package:client/theme/theme_style.dart';
 
 import 'package:client/routes/routes.dart';
-import 'package:client/providers/themedataprovider.dart';
+import 'package:client/providers/theme/themedataprovider.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
