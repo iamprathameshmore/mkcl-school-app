@@ -1,4 +1,4 @@
-import 'package:client/data/database/sql_helper.dart';
+import 'package:client/data/helpers/batchs_database_helper.dart';
 import 'package:client/providers/batch/batch_Provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +17,7 @@ class _AddBatchScreenState extends ConsumerState<AddBatchScreen> {
   TextEditingController desc = TextEditingController();
   TextEditingController studentName = TextEditingController();
 
-  DataBaseSql? dbRef;
+  BatchDatabaseHelper? dbRef;
   DateTime? pickedStartDate;
   DateTime? pickedEndDate;
   TimeOfDay? pickedStartTime;
@@ -29,33 +29,7 @@ class _AddBatchScreenState extends ConsumerState<AddBatchScreen> {
   @override
   void initState() {
     super.initState();
-    dbRef = DataBaseSql.getInstance;
-  }
-
-  void showAddStudentDialog() {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: const Text('Add Student'),
-          content: TextField(
-            controller: studentName,
-            decoration: const InputDecoration(hintText: 'Enter student name'),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                // Handle adding the student
-                // print('Added student: ${studentName.text}');
-                studentName.clear(); // Clear the input after adding
-                Navigator.of(context).pop();
-              },
-              child: const Text('Add'),
-            ),
-          ],
-        );
-      },
-    );
+    dbRef = BatchDatabaseHelper();
   }
 
   @override
@@ -78,29 +52,99 @@ class _AddBatchScreenState extends ConsumerState<AddBatchScreen> {
               color: Colors.grey,
             )),
         actions: [
+          // IconButton(
+          //     onPressed: () async {
+          //       print([
+          //         title.text,
+          //         desc.text,
+          //       ]);
+
+          //         try {
+          //            print(" start Try here........................... ");
+          //           if (title.text.isNotEmpty) {
+          //           await allbatch.addBatch(
+          //               titlenew: title.text,
+          //               startDatenew:
+          //                   DateFormat('yyyy-MM-dd').format(pickedStartDate!),
+          //               endDatenew:
+          //                   DateFormat('yyyy-MM-dd').format(pickedEndDate!),
+          //               startTimenew: pickedStartTime!.format(context),
+          //               endTimenew: pickedEndTime!.format(context));
+          //         }
+          //            print(" start Try here........................... ");
+
+          //         }
+          //          catch (e) {
+          //           print(
+          //               '--------------------------------- Start Error --------------------------------');
+          //           print(e);
+          //           print(
+          //               '--------------------------------- End Error --------------------------------');
+          //         }
+
+          //         // fixed here
+          //         Navigator.pop(context);
+
+          //     },
+          //     icon: const Icon(
+          //       Icons.done,
+          //       color: Colors.grey,
+          //     )),
           IconButton(
-              onPressed: () async {
-                // print([
-                //   title.text,
-                //   desc.text,
-                // ]);
-                if (title.text.isNotEmpty && desc.text.isNotEmpty) {
-                  await allbatch.addBatch(
-                      titlenew: title.text,
-                      descnew: desc.text,
-                      startDatenew:
-                          DateFormat('yyyy-MM-dd').format(pickedStartDate!),
-                      endDatenew:
-                          DateFormat('yyyy-MM-dd').format(pickedEndDate!),
-                      startTimenew: pickedStartTime!.format(context),
-                      endTimenew: pickedEndTime!.format(context)); // fixed here
-                  Navigator.pop(context);
-                }
-              },
-              icon: const Icon(
-                Icons.done,
-                color: Colors.grey,
-              )),
+            onPressed: () async {
+              // Print out the title and description for debugging
+              print([
+                title.text,
+                desc.text,
+              ]);
+
+              // Check if required fields are filled
+              if (title.text.isEmpty ||
+                  pickedStartDate == null ||
+                  pickedEndDate == null ||
+                  pickedStartTime == null ||
+                  pickedEndTime == null) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                      content: Text('Please fill in all required fields.')),
+                );
+                return; // Exit if validation fails
+              }
+
+              try {
+                print("Start Try here...........................");
+                // Proceed to add the batch if validation is successful
+                await allbatch.addBatch(
+                  titlenew: title.text,
+                  startDatenew:
+                      DateFormat('yyyy-MM-dd').format(pickedStartDate!),
+                  endDatenew: DateFormat('yyyy-MM-dd').format(pickedEndDate!),
+                  startTimenew: pickedStartTime!.format(context),
+                  endTimenew: pickedEndTime!.format(context),
+                );
+                print("Batch added successfully.");
+                Navigator.pop(context);
+              } catch (e) {
+                print(
+                    '--------------------------------- Start Error --------------------------------');
+                print(e);
+                print(
+                    '--------------------------------- End Error --------------------------------');
+                // Optionally show an error message to the user
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                      content: Text('Error adding batch: ${e.toString()}')),
+                );
+              }
+
+              // Navigate back to the previous screen after adding the batch
+            },
+            icon: const Icon(
+              Icons.done,
+              color: Colors.grey,
+            ),
+          ),
+
           const SizedBox(width: 5),
         ],
       ),
@@ -113,12 +157,12 @@ class _AddBatchScreenState extends ConsumerState<AddBatchScreen> {
               label: 'Title',
               context: context,
             ),
-            buildTextField(
-              controller: desc,
-              label: 'Description',
-              maxLines: 3,
-              context: context,
-            ),
+            // buildTextField(
+            //   controller: desc,
+            //   label: 'Description',
+            //   maxLines: 3,
+            //   context: context,
+            // ),
             const Divider(),
             const SizedBox(height: 10),
             Row(

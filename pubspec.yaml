@@ -39,14 +39,12 @@ dependencies:
   cupertino_icons: ^1.0.6
   sqflite: ^2.3.3+1
   dartz: ^0.10.1
-  device_preview: ^1.2.0
   form_validator: ^2.1.1
   intl: ^0.19.0
   another_flushbar: ^1.12.30
   http: ^1.2.2
   riverpod: ^2.5.1
   hooks_riverpod: ^2.5.2
-  google_fonts: ^6.2.1
   timeline_tile: ^2.0.0
   dio: ^5.7.0
   path_provider: ^2.1.4

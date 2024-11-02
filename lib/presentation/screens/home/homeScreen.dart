@@ -1,5 +1,5 @@
 import 'package:client/presentation/screens/batch/addBatchScreen.dart';
-import 'package:client/presentation/screens/batch/batch.dart';
+import 'package:client/presentation/screens/batch/home/batch.dart';
 import 'package:client/presentation/screens/profile/profileScreen.dart';
 import 'package:client/presentation/widgets/layouts/batchesWidget.dart';
 import 'package:client/providers/batch/batch_Provider.dart';
@@ -13,6 +13,7 @@ class HomeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final batchState = ref.watch(batchProvider);
+    print(batchState.batches);
 
     return Scaffold(
       appBar: AppBar(
@@ -70,9 +71,11 @@ class HomeScreen extends ConsumerWidget {
           : ListView.builder(
               itemCount: batchState.batches.length,
               itemBuilder: (context, index) {
+                final batch =
+                    batchState.batches[index]; // Assuming batch is a BatchModel
+                print(" this is the batch ${batch}");
                 return InkWell(
                   onDoubleTap: () {
-                    // print('itemId:${batchState.batches[index]}');
                     Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -82,15 +85,17 @@ class HomeScreen extends ConsumerWidget {
                     );
                   },
                   child: BatchesWidgets(
-                    title: '${batchState.batches[index]['title']}',
-                    desc: '${batchState.batches[index]['desc']}',
-                    startDate: '${batchState.batches[index]['start_date']}',
-                    endDate: '${batchState.batches[index]['end_date']}',
-                    startTime: '${batchState.batches[index]['start_time']}',
-                    endTime: '${batchState.batches[index]['end_time']}',
+                    title:
+                        batch.title, // Accessing title directly from the model
+                    startDate: batch.startDate, // Format as needed
+                    endDate: batch.endDate,
+                    startTime:
+                        batch.startTime, // Ensure this is formatted correctly
+                    endTime: batch.endTime,
                   ),
                 );
-              }),
+              },
+            ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {

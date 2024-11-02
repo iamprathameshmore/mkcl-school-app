@@ -1,21 +1,34 @@
 class StudentModel {
-  String? id;
-  String? name;
-  int? rollNo;
+  final int? studentId;
+  final String name;
+  final int? batchId;
 
-  StudentModel({this.id, this.name, this.rollNo});
+  StudentModel({
+    this.studentId,
+    required this.name,
+    this.batchId,
+  });
 
-  StudentModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
-    rollNo = json['roll_no'];
+  // Factory constructor to create a StudentModel from a map
+  factory StudentModel.fromMap(Map<String, dynamic> map) {
+    return StudentModel(
+      studentId: map['student_id'],
+      name: map['name'],
+      batchId: map['batch_id'],
+    );
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = id;
-    data['name'] = name;
-    data['roll_no'] = rollNo;
-    return data;
+  // Method to convert StudentModel to a map for database insertion
+  Map<String, dynamic> toMap() {
+    return {
+      'student_id': studentId,
+      'name': name,
+      'batch_id': batchId,
+    };
+  }
+
+  // Static method to create a list of StudentModel from a list of maps
+  static List<StudentModel> fromJsonList(List<Map<String, dynamic>> maps) {
+    return maps.map((map) => StudentModel.fromMap(map)).toList();
   }
 }

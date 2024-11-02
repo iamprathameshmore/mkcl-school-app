@@ -1,8 +1,3 @@
-import 'dart:math';
-
-import 'package:client/data/api/authApi.dart';
-import 'package:client/data/model/UserModel.dart';
-import 'package:client/presentation/screens/home/homeScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:form_validator/form_validator.dart';
@@ -20,7 +15,6 @@ class SignUpScreen extends ConsumerWidget {
     ValueNotifier<bool> passwordText = ValueNotifier<bool>(true);
 
     GlobalKey<FormState> form = GlobalKey<FormState>();
-    final ApiService apiService = ApiService();
 
     return Scaffold(
       appBar: AppBar(
@@ -232,52 +226,7 @@ class SignUpScreen extends ConsumerWidget {
                       borderRadius: BorderRadius.circular(5.0),
                       side: const BorderSide(color: Colors.indigo)),
                   child: InkWell(
-                    onTap: () async {
-                      if (form.currentState?.validate() == true) {
-                        UserModel data = UserModel(
-                            name: nameController.text,
-                            email: emailController.text,
-                            phoneNumber: phoneNumberController.text,
-                            password: passwordController.text);
-
-                        try {
-                          final res = await apiService.signUpUser(data);
-
-                          if (res.statusCode == 200) {
-                            Navigator.pushAndRemoveUntil(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const HomeScreen()),
-                              ModalRoute.withName('/'),
-                            );
-                          } else if (res.statusCode == 204) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                  content: Text(
-                                'Error: ${e.toString()}',
-                                style: const TextStyle(color: Colors.red),
-                              )), // Catch and display any error
-                            );
-                          } else if (res.statusCode == 204) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                  content: Text(
-                                'Error: ${e.toString()}',
-                                style: const TextStyle(color: Colors.red),
-                              )), // Catch and display any error
-                            );
-                          }
-                        } catch (e) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                                content: Text(
-                              'Error: ${e.toString()}',
-                              style: const TextStyle(color: Colors.red),
-                            )), // Catch and display any error
-                          );
-                        }
-                      }
-                    },
+                    onTap: () {},
                     child: Container(
                       height: 50,
                       width: double.infinity,

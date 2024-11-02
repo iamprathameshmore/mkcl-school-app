@@ -1,12 +1,13 @@
-import 'package:client/presentation/screens/batch/AttendanceScreen.dart';
+import 'package:client/data/model/batchModel.dart';
+import 'package:client/presentation/screens/batch/home/info/attendance/AttendanceScreen.dart';
 import 'package:flutter/material.dart';
 
 class BatchHomeScreen extends StatefulWidget {
-  final item;
+  final BatchModel item;
   const BatchHomeScreen({
-    Key? key,
-    this.item,
-  }) : super(key: key);
+    super.key,
+    required this.item,
+  });
 
   @override
   State<BatchHomeScreen> createState() => _BatchHomeScreenState();
@@ -22,35 +23,30 @@ class _BatchHomeScreenState extends State<BatchHomeScreen> {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                elevation: 4,
-                child: Padding(
-                  padding: const EdgeInsets.all(24.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        data['title'],
-                        style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.indigo.shade700,
+              SizedBox(
+                width: double.infinity,
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  elevation: 4,
+                  child: Padding(
+                    padding: const EdgeInsets.all(24.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          data.title,
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.indigo.shade700,
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 12),
-                      Text(
-                        data['desc'],
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.grey.shade800,
-                        ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -58,25 +54,25 @@ class _BatchHomeScreenState extends State<BatchHomeScreen> {
               _buildInfoBlock(
                 icon: Icons.date_range,
                 label: "Start Date",
-                value: data['start_date'],
+                value: data.startTime,
               ),
               const SizedBox(height: 10),
               _buildInfoBlock(
                 icon: Icons.date_range,
                 label: "End Date",
-                value: data['end_date'],
+                value: data.endDate,
               ),
               const SizedBox(height: 10),
               _buildInfoBlock(
                 icon: Icons.access_time,
                 label: "Start Time",
-                value: data['start_time'],
+                value: data.startTime,
               ),
               const SizedBox(height: 10),
               _buildInfoBlock(
                 icon: Icons.access_time,
                 label: "End Time",
-                value: data['end_time'],
+                value: data.endTime,
               ),
             ],
           ),
@@ -157,9 +153,11 @@ class _BatchHomeScreenState extends State<BatchHomeScreen> {
   }
 
   Route _createRoute() {
+    final data = widget.item;
+
     return PageRouteBuilder(
       pageBuilder: (context, animation, secondaryAnimation) =>
-          const AttendanceScreen(),
+          AttendanceScreen(id: int.parse('${data.sNo}')),
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         const begin = Offset(0.0, 1.0);
         const end = Offset.zero;

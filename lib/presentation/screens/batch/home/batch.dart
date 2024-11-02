@@ -1,10 +1,13 @@
-import 'package:client/presentation/screens/batch/batchHomeScreen.dart';
-import 'package:client/presentation/screens/batch/students.dart';
+import 'package:client/data/model/batchModel.dart';
+import 'package:client/presentation/screens/batch/addBatchScreen.dart';
+import 'package:client/presentation/screens/batch/home/info/batchHomeScreen.dart';
+import 'package:client/presentation/screens/batch/home/students/students.dart';
 import 'package:flutter/material.dart';
 
 class Batch extends StatefulWidget {
-  final item;
-  const Batch({super.key, this.item});
+  final BatchModel item; // Replace with your actual model class
+
+  Batch({super.key, required this.item});
 
   @override
   _BatchState createState() => _BatchState();
@@ -27,34 +30,29 @@ class _BatchState extends State<Batch> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    final data = widget.item;
+    final data = widget.item; // Directly access the item
     return Scaffold(
       appBar: AppBar(
         foregroundColor: Colors.grey,
         title: Text(
-          data['title'],
+          data.title, // Access the title directly
           style: const TextStyle(
               color: Colors.indigo, fontWeight: FontWeight.w500),
         ),
         centerTitle: true,
         bottom: TabBar(
           controller: _tabController,
-          // unselectedLabelStyle: ,
           dividerHeight: 0,
           indicatorColor: Colors.indigo.shade500,
           labelColor: Colors.indigo.shade500,
           unselectedLabelColor: Colors.grey,
-          // indicator: BoxDecoration(
-          //     color: Colors.amber, borderRadius: BorderRadius.circular(50)),
           tabs: const [
             Tab(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Icon(Icons.home),
-                  SizedBox(
-                    width: 10,
-                  ),
+                  SizedBox(width: 10),
                   Text('Home'),
                 ],
               ),
@@ -64,9 +62,7 @@ class _BatchState extends State<Batch> with SingleTickerProviderStateMixin {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Icon(Icons.school),
-                  SizedBox(
-                    width: 10,
-                  ),
+                  SizedBox(width: 10),
                   Text('Students'),
                 ],
               ),
@@ -74,15 +70,29 @@ class _BatchState extends State<Batch> with SingleTickerProviderStateMixin {
           ],
         ),
         actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.edit_outlined)),
-          const SizedBox(
-            width: 5,
-          )
+          IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const AddBatchScreen(),
+                  ),
+                );
+              },
+              icon: const Icon(Icons.edit_outlined)),
+          const SizedBox(width: 5),
         ],
       ),
       body: TabBarView(
         controller: _tabController,
-        children: const [BatchHomeScreen(), StudentsScreen()],
+        children: [
+          BatchHomeScreen(
+            item: data, // Pass the batch data to BatchHomeScreen
+          ),
+          StudentsScreen(
+            id: int.parse('${data.sNo}'), // Assuming data has an id field
+          ),
+        ],
       ),
     );
   }

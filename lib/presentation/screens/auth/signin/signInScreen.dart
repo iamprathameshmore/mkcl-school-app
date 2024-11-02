@@ -1,8 +1,4 @@
-import 'package:client/data/api/authApi.dart';
-import 'package:client/data/model/UserModel.dart';
-
 import 'package:client/presentation/screens/auth/signup/signUpScreen.dart';
-import 'package:client/presentation/screens/home/homeScreen.dart';
 import 'package:client/presentation/widgets/common/focusChangeUtils.dart';
 import 'package:client/presentation/widgets/common/buttons/customBtn.Widget.dart';
 
@@ -18,7 +14,6 @@ class SignInScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final ApiService apiService = ApiService();
     final emailController = TextEditingController();
     final passwordController = TextEditingController();
 
@@ -195,32 +190,7 @@ class SignInScreen extends ConsumerWidget {
 
               CustombtnWidget(
                 buttonText: 'Sign In',
-                onTap: () async {
-                  if (formKey.currentState?.validate() == true) {
-                    UserModel data = UserModel(
-                        email: emailController.text,
-                        password: passwordController.text);
-
-                    try {
-                      final res = await apiService.signInUser(data);
-
-                      if (res.statusCode == 200) {
-                        Navigator.pushReplacement(
-                            (context),
-                            MaterialPageRoute(
-                                builder: (context) => const HomeScreen()));
-                      }
-                    } catch (e) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                            content: Text(
-                          'Error: ${e.toString()}',
-                          style: const TextStyle(color: Colors.red),
-                        )), // Catch and display any error
-                      );
-                    }
-                  }
-                },
+                onTap: () {},
               ),
 
               Padding(
