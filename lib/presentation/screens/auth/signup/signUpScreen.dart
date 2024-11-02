@@ -1,3 +1,5 @@
+import 'package:client/routes/routesName.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:form_validator/form_validator.dart';
@@ -31,10 +33,15 @@ class SignUpScreen extends ConsumerWidget {
         key: form,
         child: SingleChildScrollView(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               const SizedBox(
                 height: 50,
+              ),
+              const Image(
+                image: AssetImage('assets/mkcl.png'),
+                height: 100,
+                color: Colors.indigo,
               ),
               Column(
                 children: [
@@ -42,7 +49,7 @@ class SignUpScreen extends ConsumerWidget {
                     'Mkcl School',
                     style: TextStyle(
                       color: Colors.indigo.shade600,
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.w700,
                       fontSize: 30,
                     ),
                   ),
@@ -52,43 +59,8 @@ class SignUpScreen extends ConsumerWidget {
                   )
                 ],
               ),
-              const SizedBox(
-                height: 50,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextFormField(
-                  controller: nameController,
-                  style:
-                      TextStyle(color: Theme.of(context).colorScheme.primary),
-                  validator: ValidationBuilder(
-                          requiredMessage: 'Name must be required')
-                      .build(),
-                  decoration: InputDecoration(
-                      helperText: 'Ex. Mkcl Amt',
-                      helperStyle: const TextStyle(color: Colors.grey),
-
-                      // focusColor: Colors.amber,
-                      fillColor: Theme.of(context).colorScheme.onSurface,
-                      filled: true,
-                      labelText: 'Name',
-                      labelStyle: TextStyle(
-                          color: Theme.of(context).colorScheme.primary,
-                          fontWeight: FontWeight.w400),
-                      prefixIcon: Icon(
-                        Icons.school_outlined,
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
-                      enabled: true,
-                      focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: Theme.of(context).colorScheme.onSurface),
-                          borderRadius: BorderRadius.circular(5)),
-                      enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: Theme.of(context).colorScheme.onSurface),
-                          borderRadius: BorderRadius.circular(5))),
-                ),
+              SizedBox(
+                height: 25,
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -111,41 +83,6 @@ class SignUpScreen extends ConsumerWidget {
                           fontWeight: FontWeight.w400),
                       prefixIcon: Icon(
                         CupertinoIcons.mail,
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
-                      enabled: true,
-                      focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: Theme.of(context).colorScheme.onSurface),
-                          borderRadius: BorderRadius.circular(5)),
-                      enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: Theme.of(context).colorScheme.onSurface),
-                          borderRadius: BorderRadius.circular(5))),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextFormField(
-                  controller: phoneNumberController,
-                  keyboardType: TextInputType.phone,
-                  style:
-                      TextStyle(color: Theme.of(context).colorScheme.primary),
-                  validator: ValidationBuilder(
-                          requiredMessage: 'Email must be required')
-                      .phone('Email must be Valid')
-                      .build(),
-                  decoration: InputDecoration(
-                      helperText: 'Ex. +91 1234567890',
-                      helperStyle: const TextStyle(color: Colors.grey),
-                      fillColor: Theme.of(context).colorScheme.onSurface,
-                      filled: true,
-                      labelText: 'Phone Number',
-                      labelStyle: TextStyle(
-                          color: Theme.of(context).colorScheme.primary,
-                          fontWeight: FontWeight.w400),
-                      prefixIcon: Icon(
-                        CupertinoIcons.phone,
                         color: Theme.of(context).colorScheme.primary,
                       ),
                       enabled: true,
@@ -226,7 +163,40 @@ class SignUpScreen extends ConsumerWidget {
                       borderRadius: BorderRadius.circular(5.0),
                       side: const BorderSide(color: Colors.indigo)),
                   child: InkWell(
-                    onTap: () {},
+                    onTap: () async {
+                      try {
+                        UserCredential userCredential = await FirebaseAuth
+                            .instance
+                            .createUserWithEmailAndPassword(
+                          email: emailController.text.trim(),
+                          password: passwordController.text.trim(),
+                        );
+                        // Redirect to another screen upon successful sign-up
+                        Navigator.of(context).pushNamedAndRemoveUntil(
+                            Routesname.home,
+                            ModalRoute.withName(
+                                '/')); // Replace '/home' with your desired route
+                      } catch (e) {
+                        print("Error signing up: $e");
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              title: Text('Sign Up Failed'),
+                              content: Text(e.toString()),
+                              actions: [
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: Text('OK'),
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      }
+                    },
                     child: Container(
                       height: 50,
                       width: double.infinity,
@@ -268,47 +238,6 @@ class SignUpScreen extends ConsumerWidget {
                       )
                     ],
                   )),
-              const SizedBox(
-                height: 25,
-              ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                child: SizedBox(
-                  height: 50,
-                  child: Text.rich(
-                    style: TextStyle(fontSize: 15, color: Colors.grey),
-                    textAlign: TextAlign.center,
-                    TextSpan(
-                        text: 'By Siginin You Accepts our ',
-                        // style: TextStyle(color: Theme.of(context).colorScheme.primary),
-                        children: [
-                          TextSpan(
-                              text: 'Terma of Use',
-                              style: TextStyle(
-                                  color: Colors.indigo,
-                                  decorationColor: Colors.indigo,
-                                  decoration: TextDecoration.underline),
-                              children: [
-                                TextSpan(
-                                    text: ' and ',
-                                    style: TextStyle(
-                                        color: Colors.grey,
-                                        decoration: TextDecoration.none),
-                                    children: [
-                                      TextSpan(
-                                        text: 'Privacy Polices',
-                                        style: TextStyle(
-                                            color: Colors.indigo,
-                                            decorationColor: Colors.indigo,
-                                            decoration:
-                                                TextDecoration.underline),
-                                      )
-                                    ])
-                              ])
-                        ]),
-                  ),
-                ),
-              ),
             ],
           ),
         ),

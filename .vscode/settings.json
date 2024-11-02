@@ -1,3 +1,7 @@
 {
-    "cmake.sourceDirectory": "P:/programming/internship/mkcl/school/windows"
+    "cmake.sourceDirectory": "P:/programming/internship/mkcl/school/windows",
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "cSpell.words": [
+        "Routesname"
+    ]
 }

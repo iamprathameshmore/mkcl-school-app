@@ -1,11 +1,12 @@
 import 'package:client/presentation/screens/auth/signup/signUpScreen.dart';
 import 'package:client/presentation/widgets/common/focusChangeUtils.dart';
 import 'package:client/presentation/widgets/common/buttons/customBtn.Widget.dart';
-
+import 'package:client/routes/routes.dart';
+import 'package:client/routes/routesName.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:form_validator/form_validator.dart';
-
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -107,9 +108,6 @@ class SignInScreen extends ConsumerWidget {
                           borderRadius: BorderRadius.circular(5))),
                 ),
               ),
-              // const CustomEmailWidget(
-              //   name: "Email",
-              // ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ValueListenableBuilder(
@@ -187,12 +185,46 @@ class SignInScreen extends ConsumerWidget {
                   )
                 ],
               ),
-
               CustombtnWidget(
                 buttonText: 'Sign In',
-                onTap: () {},
+                onTap: () async {
+                  try {
+                    UserCredential userCredential =
+                        await FirebaseAuth.instance.signInWithEmailAndPassword(
+                      email: emailController.text.trim(),
+                      password: passwordController.text.trim(),
+                    );
+                    // Navigate to another screen upon successful sign-in
+                    Navigator.of(context).pushReplacementNamed(Routesname
+                        .home); // Replace '/home' with your home route
+                  } catch (e) {
+                    print("Error signing in: $e");
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: Text(
+                            'Sign In Failed',
+                            style: TextStyle(color: Colors.red),
+                          ),
+                          content: Text(
+                            e.toString(),
+                            style: TextStyle(color: Colors.grey),
+                          ),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: Text('OK'),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  }
+                },
               ),
-
               Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Row(
@@ -220,7 +252,6 @@ class SignInScreen extends ConsumerWidget {
                           ))
                     ],
                   )),
-
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 child: SizedBox(
@@ -264,44 +295,6 @@ class SignInScreen extends ConsumerWidget {
           ),
         ),
       ),
-      // bottomNavigationBar: Padding(
-      //   padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-      //   child: SizedBox(
-      //     height: 50,
-      //     child: Text.rich(
-      //       style: TextStyle(
-      //           color: Colors.grey, fontWeight: FontWeight.w700),
-      //       textAlign: TextAlign.center,
-      //       const TextSpan(
-      //           text: 'By Siginin You Accepts our ',
-      //           // style: TextStyle(color: Theme.of(context).colorScheme.primary),
-      //           children: [
-      //             TextSpan(
-      //                 text: 'Terma of Use',
-      //                 style: TextStyle(
-      //                     color: Colors.indigo,
-      //                     decorationColor: Colors.indigo,
-      //                     decoration: TextDecoration.underline),
-      //                 children: [
-      //                   TextSpan(
-      //                       text: ' and ',
-      //                       style: TextStyle(
-      //                           color: Colors.grey,
-      //                           decoration: TextDecoration.none),
-      //                       children: [
-      //                         TextSpan(
-      //                           text: 'Privacy Polices',
-      //                           style: TextStyle(
-      //                               color: Colors.indigo,
-      //                               decorationColor: Colors.indigo,
-      //                               decoration: TextDecoration.underline),
-      //                         )
-      //                       ])
-      //                 ])
-      //           ]),
-      //     ),
-      //   ),
-      // ),
     );
   }
 }

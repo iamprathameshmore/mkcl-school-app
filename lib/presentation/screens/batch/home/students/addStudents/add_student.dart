@@ -5,7 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class AddStudentDialog extends ConsumerWidget {
   final int id; // `id` represents the batchId
 
-  AddStudentDialog({super.key, required this.id});
+  const AddStudentDialog({super.key, required this.id});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

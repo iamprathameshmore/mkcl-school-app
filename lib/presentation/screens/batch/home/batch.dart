@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 class Batch extends StatefulWidget {
   final BatchModel item; // Replace with your actual model class
 
-  Batch({super.key, required this.item});
+  const Batch({super.key, required this.item});
 
   @override
   _BatchState createState() => _BatchState();

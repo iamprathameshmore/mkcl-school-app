@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "657475812196",
+    "project_id": "mkcl-school",
+    "storage_bucket": "mkcl-school.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:657475812196:android:3d205b4f755cab2dd95871",
+        "android_client_info": {
+          "package_name": "com.example.client"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAevPI72Ita2S_HEtXlJiSXi_mKBwfW0T8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

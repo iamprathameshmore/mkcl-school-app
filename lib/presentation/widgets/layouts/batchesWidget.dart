@@ -4,7 +4,6 @@ class BatchesWidgets extends StatelessWidget {
   final String? name;
   final String? username;
   final String? title;
-  final String? desc;
   final String? startDate;
   final String? endDate;
   final String? startTime;
@@ -15,7 +14,6 @@ class BatchesWidgets extends StatelessWidget {
     this.name,
     this.username,
     this.title,
-    this.desc,
     this.startDate,
     this.endDate,
     this.startTime,
@@ -53,18 +51,6 @@ class BatchesWidgets extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 8),
-
-              // Description
-              Text(
-                desc ?? 'No description available.',
-                style: const TextStyle(
-                  fontSize: 14,
-                  color: Colors.grey,
-                ),
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-              ),
-              const SizedBox(height: 10),
 
               // Date and Time Information
               Row(

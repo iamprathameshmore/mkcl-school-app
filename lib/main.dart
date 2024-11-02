@@ -5,8 +5,12 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'routes/routesName.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(); // Initialize Firebase
+
   return runApp(
     const ProviderScope(
       child: MyApp(),
@@ -29,7 +33,7 @@ class MyApp extends ConsumerWidget {
         theme: ThemeDataStyle.light, // Light theme
         darkTheme: ThemeDataStyle.dark,
         debugShowCheckedModeBanner: false,
-        initialRoute: Routesname.home,
+        initialRoute: Routesname.signIn,
         onGenerateRoute: AppRoutes.generateRoute);
   }
 }

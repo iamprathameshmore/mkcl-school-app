@@ -105,7 +105,7 @@ class _AddBatchScreenState extends ConsumerState<AddBatchScreen> {
                   pickedStartTime == null ||
                   pickedEndTime == null) {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
+                  const SnackBar(
                       content: Text('Please fill in all required fields.')),
                 );
                 return; // Exit if validation fails

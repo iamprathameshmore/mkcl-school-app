@@ -31,7 +31,7 @@ class CustombtnWidget extends StatelessWidget {
             decoration: BoxDecoration(borderRadius: BorderRadius.circular(5)),
             child: Text(
               buttonText,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 20,
                 color: Colors.white,
                 fontWeight: FontWeight.w700,

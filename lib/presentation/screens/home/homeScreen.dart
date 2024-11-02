@@ -1,8 +1,8 @@
 import 'package:client/presentation/screens/batch/addBatchScreen.dart';
 import 'package:client/presentation/screens/batch/home/batch.dart';
-import 'package:client/presentation/screens/profile/profileScreen.dart';
 import 'package:client/presentation/widgets/layouts/batchesWidget.dart';
 import 'package:client/providers/batch/batch_Provider.dart';
+import 'package:client/routes/routesName.dart';
 import 'package:flutter/material.dart';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -34,30 +34,57 @@ class HomeScreen extends ConsumerWidget {
                   style: TextStyle(color: Colors.grey.shade700))
             ])),
         actions: [
-          GestureDetector(
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const ProfileScreen()));
-              },
-              child: Container(
-                height: 40,
-                width: 40,
-                decoration: BoxDecoration(
-                    color: Colors.indigo.shade600,
-                    borderRadius: BorderRadius.circular(50)),
-                child: const Padding(
-                  padding: EdgeInsets.all(2.0),
-                  child: CircleAvatar(
-                    backgroundColor: Colors.indigo,
-                    child: Icon(Icons.person),
-                  ),
+          IconButton(
+            onPressed: () {
+              showModalBottomSheet(
+                context: context,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
                 ),
-              )),
-          const SizedBox(
-            width: 10,
-          )
+                builder: (BuildContext context) {
+                  return Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      mainAxisSize:
+                          MainAxisSize.min, // Minimize modal to fit content
+                      children: [
+                        ListTile(
+                          leading: Icon(
+                            Icons.bug_report_outlined,
+                            color: Colors.grey,
+                          ),
+                          title: Text(
+                            'Developer Feedback',
+                            style: TextStyle(color: Colors.grey),
+                          ),
+                          onTap: () {
+                            // Handle delete action
+                            Navigator.pop(context);
+                          },
+                        ),
+                        ListTile(
+                          leading: Icon(
+                            Icons.logout,
+                            color: Colors.red,
+                          ),
+                          title: Text(
+                            'Sign Out',
+                            style: TextStyle(color: Colors.red),
+                          ),
+                          onTap: () {
+                            // Handle share action
+                            Navigator.of(context).pushNamedAndRemoveUntil(
+                                Routesname.signIn, ModalRoute.withName('/'));
+                          },
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              );
+            },
+            icon: Icon(Icons.settings_outlined),
+          ),
         ],
       ),
       body: batchState.isLoading
@@ -73,7 +100,7 @@ class HomeScreen extends ConsumerWidget {
               itemBuilder: (context, index) {
                 final batch =
                     batchState.batches[index]; // Assuming batch is a BatchModel
-                print(" this is the batch ${batch}");
+                print(" this is the batch $batch");
                 return InkWell(
                   onDoubleTap: () {
                     Navigator.push(

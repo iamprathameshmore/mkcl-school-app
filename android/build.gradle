@@ -1,21 +1,67 @@
-allprojects {
+// allprojects {
   
+//     repositories {
+//         google()
+//         mavenCentral()
+//     }
+    
+// }
+    
+
+// rootProject.buildDir = "../build"
+// subprojects {
+//     project.buildDir = "${rootProject.buildDir}/${project.name}"
+// }
+// subprojects {
+//     project.evaluationDependsOn(":app")
+// }
+
+// tasks.register("clean", Delete) {
+//     delete rootProject.buildDir
+// }
+
+// plugins {
+//   // ...
+
+//   // Add the dependency for the Google services Gradle plugin
+//   id("com.google.gms.google-services") version "4.4.2" apply false
+
+// }
+
+// Root build.gradle file
+
+
+plugins {
+    // Other plugins...
+
+    // Add the dependency for the Google services Gradle plugin
+    id 'com.google.gms.google-services' version '4.4.2' apply false
+}
+
+
+allprojects {
     repositories {
         google()
         mavenCentral()
     }
     
 }
-    
 
 rootProject.buildDir = "../build"
+
 subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"
-}
-subprojects {
-    project.evaluationDependsOn(":app")
+    project.evaluationDependsOn(":app") // Combine into a single block for clarity
 }
 
+ tasks.withType(JavaCompile) {
+        options.compilerArgs << "-Xlint:deprecation"
+    }
+
+// Define a clean task to delete the build directory
 tasks.register("clean", Delete) {
     delete rootProject.buildDir
 }
+
+// Apply the Google services Gradle plugin only in the application module build.gradle
+// Example of what to include in the app module build.gradle file
