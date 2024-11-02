@@ -2,9 +2,9 @@ import 'package:client/presentation/screens/batch/addBatchScreen.dart';
 import 'package:client/presentation/screens/batch/home/batch.dart';
 import 'package:client/presentation/widgets/layouts/batchesWidget.dart';
 import 'package:client/providers/batch/batch_Provider.dart';
+import 'package:client/providers/theme/themedataprovider.dart';
 import 'package:client/routes/routesName.dart';
 import 'package:flutter/material.dart';
-
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class HomeScreen extends ConsumerWidget {
@@ -12,7 +12,10 @@ class HomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final themeNotifier = ref.read(themeProvider.notifier);
     final batchState = ref.watch(batchProvider);
+    final currentTheme = ref.read(themeProvider);
+    bool value = false;
     print(batchState.batches);
 
     return Scaffold(
@@ -38,7 +41,7 @@ class HomeScreen extends ConsumerWidget {
             onPressed: () {
               showModalBottomSheet(
                 context: context,
-                shape: RoundedRectangleBorder(
+                shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
                 ),
                 builder: (BuildContext context) {
@@ -50,24 +53,42 @@ class HomeScreen extends ConsumerWidget {
                       children: [
                         ListTile(
                           leading: Icon(
-                            Icons.bug_report_outlined,
+                            value == false ? Icons.sunny : Icons.dark_mode,
                             color: Colors.grey,
                           ),
                           title: Text(
-                            'Developer Feedback',
+                            value == false ? 'Light Mode' : 'Dark Mode',
                             style: TextStyle(color: Colors.grey),
                           ),
                           onTap: () {
-                            // Handle delete action
-                            Navigator.pop(context);
+                            value == true ? value = false : value = true;
+                            if (value == true) {
+                              themeNotifier.changeTheme(ThemeMode.light);
+                            } else {
+                              themeNotifier.changeTheme(ThemeMode.dark);
+                            }
                           },
                         ),
+                        // ListTile(
+                        //   leading: const Icon(
+                        //     Icons.bug_report_outlined,
+                        //     color: Colors.grey,
+                        //   ),
+                        //   title: const Text(
+                        //     'Developer Feedback',
+                        //     style: TextStyle(color: Colors.grey),
+                        //   ),
+                        //   onTap: () {
+                        //     // Handle delete action
+                        //     // Navigator.pop(context);
+                        //   },
+                        // ),
                         ListTile(
-                          leading: Icon(
+                          leading: const Icon(
                             Icons.logout,
                             color: Colors.red,
                           ),
-                          title: Text(
+                          title: const Text(
                             'Sign Out',
                             style: TextStyle(color: Colors.red),
                           ),
@@ -83,7 +104,7 @@ class HomeScreen extends ConsumerWidget {
                 },
               );
             },
-            icon: Icon(Icons.settings_outlined),
+            icon: const Icon(Icons.settings_outlined),
           ),
         ],
       ),

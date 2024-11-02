@@ -159,11 +159,11 @@ class ForgetPasswordScreen extends ConsumerWidget {
                       context: context,
                       builder: (context) {
                         return AlertDialog(
-                          title: Text(
+                          title: const Text(
                             'Email Required',
                             style: TextStyle(color: Colors.red),
                           ),
-                          content: Text(
+                          content: const Text(
                             'Please enter your email address to reset your password.',
                             style: TextStyle(color: Colors.grey),
                           ),
@@ -172,7 +172,7 @@ class ForgetPasswordScreen extends ConsumerWidget {
                               onPressed: () {
                                 Navigator.of(context).pop();
                               },
-                              child: Text('OK'),
+                              child: const Text('OK'),
                             ),
                           ],
                         );
@@ -190,11 +190,11 @@ class ForgetPasswordScreen extends ConsumerWidget {
                       context: context,
                       builder: (context) {
                         return AlertDialog(
-                          title: Text(
+                          title: const Text(
                             'Password Reset Email Sent',
                             style: TextStyle(color: Colors.green),
                           ),
-                          content: Text(
+                          content: const Text(
                             'Please check your email for instructions to reset your password.',
                             style: TextStyle(color: Colors.grey),
                           ),
@@ -203,7 +203,7 @@ class ForgetPasswordScreen extends ConsumerWidget {
                               onPressed: () {
                                 Navigator.of(context).pop();
                               },
-                              child: Text('OK'),
+                              child: const Text('OK'),
                             ),
                           ],
                         );
@@ -218,20 +218,20 @@ class ForgetPasswordScreen extends ConsumerWidget {
                       context: context,
                       builder: (context) {
                         return AlertDialog(
-                          title: Text(
+                          title: const Text(
                             'Error',
                             style: TextStyle(color: Colors.red),
                           ),
                           content: Text(
                             e.toString(),
-                            style: TextStyle(color: Colors.grey),
+                            style: const TextStyle(color: Colors.grey),
                           ),
                           actions: [
                             TextButton(
                               onPressed: () {
                                 Navigator.of(context).pop();
                               },
-                              child: Text('OK'),
+                              child: const Text('OK'),
                             ),
                           ],
                         );

@@ -1,34 +1,37 @@
 class AttendanceModel {
-  final int? attendanceId; // Optional ID for existing attendance records
-  final int studentId; // ID of the student
-  final String attendanceDate; // Date of the attendance
-  final String
-      status; // Status of the attendance (e.g., Present, Absent, Late, Excused)
+  final int? attendanceId;
+  final int studentId;
+  final int batchId; // Add this field
+  final String attendanceDate;
+  final String status;
 
   AttendanceModel({
     this.attendanceId,
     required this.studentId,
+    required this.batchId, // Include in constructor
     required this.attendanceDate,
     required this.status,
   });
 
-  // Convert an AttendanceModel instance to a Map for storing in the database
+  // Convert a AttendanceModel into a Map. The Map is used as an intermediate step when converting to JSON.
   Map<String, dynamic> toJson() {
     return {
       'attendance_id': attendanceId,
       'student_id': studentId,
+      'batch_id': batchId, // Include in JSON
       'attendance_date': attendanceDate,
       'status': status,
     };
   }
 
-  // Create an AttendanceModel instance from a Map (retrieved from the database)
+  // Convert a Map into a AttendanceModel. This is the reverse of the `toJson` method.
   factory AttendanceModel.fromJson(Map<String, dynamic> json) {
     return AttendanceModel(
-      attendanceId: json['attendance_id'], // Deserialize attendance_id
-      studentId: json['student_id'], // Deserialize student_id
-      attendanceDate: json['attendance_date'], // Deserialize attendance_date
-      status: json['status'], // Deserialize status
+      attendanceId: json['attendance_id'],
+      studentId: json['student_id'],
+      batchId: json['batch_id'], // Include in the factory constructor
+      attendanceDate: json['attendance_date'],
+      status: json['status'],
     );
   }
 }

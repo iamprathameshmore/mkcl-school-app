@@ -69,19 +69,19 @@ class _BatchState extends State<Batch> with SingleTickerProviderStateMixin {
             ),
           ],
         ),
-        actions: [
-          IconButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const AddBatchScreen(),
-                  ),
-                );
-              },
-              icon: const Icon(Icons.edit_outlined)),
-          const SizedBox(width: 5),
-        ],
+        // actions: [
+        //   IconButton(
+        //       onPressed: () {
+        //         Navigator.push(
+        //           context,
+        //           MaterialPageRoute(
+        //             builder: (context) => const AddBatchScreen(),
+        //           ),
+        //         );
+        //       },
+        //       icon: const Icon(Icons.edit_outlined)),
+        //   const SizedBox(width: 5),
+        // ],
       ),
       body: TabBarView(
         controller: _tabController,

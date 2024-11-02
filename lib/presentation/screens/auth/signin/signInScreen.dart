@@ -203,20 +203,20 @@ class SignInScreen extends ConsumerWidget {
                       context: context,
                       builder: (context) {
                         return AlertDialog(
-                          title: Text(
+                          title: const Text(
                             'Sign In Failed',
                             style: TextStyle(color: Colors.red),
                           ),
                           content: Text(
                             e.toString(),
-                            style: TextStyle(color: Colors.grey),
+                            style: const TextStyle(color: Colors.grey),
                           ),
                           actions: [
                             TextButton(
                               onPressed: () {
                                 Navigator.of(context).pop();
                               },
-                              child: Text('OK'),
+                              child: const Text('OK'),
                             ),
                           ],
                         );

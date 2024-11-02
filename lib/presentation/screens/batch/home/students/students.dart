@@ -31,41 +31,53 @@ class _StudentsScreenState extends ConsumerState<StudentsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print('this is ${widget.id}');
     final studentList = ref.watch(studentListProvider(widget.id));
+    print(studentList);
 
     return Scaffold(
-      body: ListView.builder(
-        itemCount: studentList.length,
-        itemBuilder: (context, index) {
-          final student = studentList[index];
-          return Card(
-            margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-            elevation: 2,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: ListTile(
-              contentPadding:
-                  const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              title: Text(
-                student.name,
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: ListView.builder(
+          itemCount: studentList.length,
+          itemBuilder: (context, index) {
+            final student = studentList[index];
+            return Card(
+              color: Theme.of(context).colorScheme.onSurface,
+              margin: const EdgeInsets.symmetric(vertical: 7, horizontal: 15),
+              elevation: 0.5,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(5),
+              ),
+              child: ListTile(
+                contentPadding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                title: Text(
+                  student.name,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Theme.of(context).colorScheme.primary,
+                    fontSize: 16,
+                  ),
+                ),
+                subtitle: Text(
+                  "Roll No: ${student.studentId}",
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                ),
+                trailing: IconButton(
+                  icon: const Icon(Icons.delete, color: Colors.redAccent),
+                  onPressed: () {
+                    // ref
+                    //     .read(studentListProvider.notifier)
+                    //     .deleteStudent(student.studentId);
+                  },
                 ),
               ),
-              subtitle: Text("Roll No: ${student.studentId}"),
-              trailing: IconButton(
-                icon: const Icon(Icons.delete, color: Colors.redAccent),
-                onPressed: () {
-                  // ref
-                  //     .read(studentListProvider.notifier)
-                  //     .deleteStudent(student.studentId);
-                },
-              ),
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
       floatingActionButton: FloatingActionButton.extended(
         backgroundColor: Colors.indigo.shade500,
@@ -75,22 +87,40 @@ class _StudentsScreenState extends ConsumerState<StudentsScreen> {
             context: context,
             builder: (BuildContext context) {
               return AlertDialog(
-                title: const Text("Add Student"),
+                backgroundColor: Theme.of(context).colorScheme.onSurface,
+                title: Text(
+                  "Add Student",
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                ),
                 content: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     TextField(
                       controller: nameController,
-                      decoration: const InputDecoration(
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
+                      decoration: InputDecoration(
                         labelText: "Name",
+                        labelStyle: TextStyle(
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
                         border: OutlineInputBorder(),
                       ),
                     ),
                     const SizedBox(height: 10),
                     TextField(
                       controller: rollNoController,
-                      decoration: const InputDecoration(
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
+                      decoration: InputDecoration(
                         labelText: "Roll No",
+                        labelStyle: TextStyle(
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
                         border: OutlineInputBorder(),
                       ),
                       keyboardType: TextInputType.number,
@@ -130,7 +160,7 @@ class _StudentsScreenState extends ConsumerState<StudentsScreen> {
                         print('this is widget id ${widget.id}');
                         ref
                             .read(studentListProvider(widget.id).notifier)
-                            .addStudent(name, widget.id, rollNo);
+                            .addStudent(name, rollNo, widget.id);
 
                         nameController.clear();
                         rollNoController.clear();

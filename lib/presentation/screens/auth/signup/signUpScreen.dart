@@ -59,7 +59,7 @@ class SignUpScreen extends ConsumerWidget {
                   )
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 25,
               ),
               Padding(
@@ -182,14 +182,14 @@ class SignUpScreen extends ConsumerWidget {
                           context: context,
                           builder: (context) {
                             return AlertDialog(
-                              title: Text('Sign Up Failed'),
+                              title: const Text('Sign Up Failed'),
                               content: Text(e.toString()),
                               actions: [
                                 TextButton(
                                   onPressed: () {
                                     Navigator.of(context).pop();
                                   },
-                                  child: Text('OK'),
+                                  child: const Text('OK'),
                                 ),
                               ],
                             );

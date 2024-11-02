@@ -12,9 +12,17 @@ class StudentModel {
   // Factory constructor to create a StudentModel from a map
   factory StudentModel.fromMap(Map<String, dynamic> map) {
     return StudentModel(
-      studentId: map['student_id'],
-      name: map['name'],
-      batchId: map['batch_id'],
+      studentId: map['student_id'] as int?, // Explicitly cast to int?
+      name: map['name'] as String,
+      batchId: map['batch_id'] as int?, // Explicitly cast to int?
+    );
+  }
+
+  factory StudentModel.fromJson(Map<String, dynamic> json) {
+    return StudentModel(
+      studentId: json['student_id'],
+      name: json['name'],
+      batchId: json['batch_id'],
     );
   }
 

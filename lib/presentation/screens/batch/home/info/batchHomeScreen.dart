@@ -18,7 +18,7 @@ class _BatchHomeScreenState extends State<BatchHomeScreen> {
   Widget build(BuildContext context) {
     final data = widget.item;
     return Scaffold(
-      backgroundColor: Colors.grey[100],
+      // backgroundColor: Colors.grey[100],
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
@@ -28,15 +28,24 @@ class _BatchHomeScreenState extends State<BatchHomeScreen> {
               SizedBox(
                 width: double.infinity,
                 child: Card(
+                  color: Theme.of(context).colorScheme.onSurface,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
+                    borderRadius: BorderRadius.circular(5),
                   ),
-                  elevation: 4,
+                  elevation: 0.5,
                   child: Padding(
                     padding: const EdgeInsets.all(24.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        Row(
+                          children: [
+                            Text(
+                              "Title",
+                              style: TextStyle(color: Colors.grey),
+                            ),
+                          ],
+                        ),
                         Text(
                           data.title,
                           style: TextStyle(
@@ -103,16 +112,16 @@ class _BatchHomeScreenState extends State<BatchHomeScreen> {
     required String value,
   }) {
     return Card(
-      color: Colors.white,
-      elevation: 3,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      color: Theme.of(context).colorScheme.onSurface,
+      elevation: 0.5,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
         child: Row(
           children: [
             Container(
               decoration: BoxDecoration(
-                color: Colors.indigo.shade100,
+                color: Theme.of(context).colorScheme.surface,
                 shape: BoxShape.circle,
               ),
               padding: const EdgeInsets.all(12),
@@ -137,10 +146,10 @@ class _BatchHomeScreenState extends State<BatchHomeScreen> {
                   const SizedBox(height: 4),
                   Text(
                     value,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
-                      color: Colors.black87,
+                      color: Theme.of(context).colorScheme.primary,
                     ),
                   ),
                 ],

@@ -73,7 +73,7 @@ class AddStudentDialog extends ConsumerWidget {
             // If validation passes, add the student and close the dialog
             ref
                 .read(studentListProvider(id).notifier)
-                .addStudent(name, id, rollNo);
+                .addStudent(name, rollNo, id);
             nameController.clear(); // Clear the text field
             rollNoController.clear(); // Clear the text field
             Navigator.pop(context); // Close the dialog after adding the student

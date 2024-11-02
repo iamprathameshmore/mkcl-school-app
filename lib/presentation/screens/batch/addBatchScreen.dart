@@ -163,7 +163,18 @@ class _AddBatchScreenState extends ConsumerState<AddBatchScreen> {
             //   maxLines: 3,
             //   context: context,
             // ),
-            const Divider(),
+
+            const SizedBox(height: 10),
+            Row(
+              children: [
+                SizedBox(
+                  width: 10,
+                ),
+                Text('Select Date And Time',
+                    style: TextStyle(fontSize: 18, color: Colors.grey)),
+              ],
+            ),
+            // const Divider(),
             const SizedBox(height: 10),
             Row(
               children: [
@@ -181,6 +192,22 @@ class _AddBatchScreenState extends ConsumerState<AddBatchScreen> {
                         initialDate: DateTime.now(),
                         firstDate: DateTime(2020, 7, 1),
                         lastDate: DateTime.now(),
+                        builder: (BuildContext context, Widget? child) {
+                          return Theme(
+                            data: ThemeData.light().copyWith(
+                              primaryColor: Colors.indigo
+                                  .shade600, // Change the color of the header
+                              // Change the color of the accent (buttons)
+                              colorScheme: ColorScheme.light(
+                                  primary: Colors.indigo
+                                      .shade600), // Change the color scheme
+                              buttonTheme: ButtonThemeData(
+                                  textTheme: ButtonTextTheme
+                                      .primary), // Change button text color
+                            ),
+                            child: child ?? Container(),
+                          );
+                        },
                       );
 
                       if (pickedStartDate != null) {
@@ -209,6 +236,22 @@ class _AddBatchScreenState extends ConsumerState<AddBatchScreen> {
                         initialDate: DateTime.now(),
                         firstDate: DateTime(2020, 7, 1),
                         lastDate: DateTime.now(),
+                        builder: (BuildContext context, Widget? child) {
+                          return Theme(
+                            data: ThemeData.light().copyWith(
+                              primaryColor: Colors.indigo
+                                  .shade600, // Change the color of the header
+                              // Change the color of the accent (buttons)
+                              colorScheme: ColorScheme.light(
+                                  primary: Colors.indigo
+                                      .shade600), // Change the color scheme
+                              buttonTheme: ButtonThemeData(
+                                  textTheme: ButtonTextTheme
+                                      .primary), // Change button text color
+                            ),
+                            child: child ?? Container(),
+                          );
+                        },
                       );
 
                       if (pickedEndDate != null) {
@@ -239,6 +282,23 @@ class _AddBatchScreenState extends ConsumerState<AddBatchScreen> {
                       TimeOfDay? pickedTime = await showTimePicker(
                         context: context,
                         initialTime: TimeOfDay.now(),
+                        builder: (BuildContext context, Widget? child) {
+                          return Theme(
+                            data: ThemeData.light().copyWith(
+                              primaryColor: Colors.indigo
+                                  .shade600, // Change the color of the header
+                              // Change the color of the accent (buttons)
+                              colorScheme: ColorScheme.light(
+                                  primary: Colors.indigo
+                                      .shade600), // Change the color scheme
+                              buttonTheme: ButtonThemeData(
+                                  textTheme: ButtonTextTheme
+                                      .primary), // Change button text color
+                            ),
+                            child: child ??
+                                Container(), // Provide a fallback for child
+                          );
+                        },
                       );
 
                       if (pickedTime != null) {
@@ -268,6 +328,23 @@ class _AddBatchScreenState extends ConsumerState<AddBatchScreen> {
                       TimeOfDay? pickedTime = await showTimePicker(
                         context: context,
                         initialTime: TimeOfDay.now(),
+                        builder: (BuildContext context, Widget? child) {
+                          return Theme(
+                            data: ThemeData.light().copyWith(
+                              primaryColor: Colors.indigo
+                                  .shade600, // Change the color of the header
+                              // Change the color of the accent (buttons)
+                              colorScheme: ColorScheme.light(
+                                  primary: Colors.indigo
+                                      .shade600), // Change the color scheme
+                              buttonTheme: ButtonThemeData(
+                                  textTheme: ButtonTextTheme
+                                      .primary), // Change button text color
+                            ),
+                            child: child ??
+                                Container(), // Provide a fallback for child
+                          );
+                        },
                       );
 
                       if (pickedTime != null) {
@@ -287,13 +364,18 @@ class _AddBatchScreenState extends ConsumerState<AddBatchScreen> {
               ],
             ),
             const SizedBox(height: 10),
-            const Divider(),
+            // const Divider(),
             const SizedBox(height: 10),
             // Weekday selection
-            Text('Select Weekdays',
-                style: TextStyle(
-                    fontSize: 18,
-                    color: Theme.of(context).colorScheme.primary)),
+            Row(
+              children: [
+                SizedBox(
+                  width: 10,
+                ),
+                Text('Select Weekdays',
+                    style: TextStyle(fontSize: 18, color: Colors.grey)),
+              ],
+            ),
             const SizedBox(
               height: 10,
             ),
